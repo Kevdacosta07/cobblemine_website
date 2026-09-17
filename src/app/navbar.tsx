@@ -25,7 +25,7 @@ export default function Navbar() {
   function navigate(next: string) { setActive(next); setMenuOpen(false); }
   return <>
     <header className="site-navbar">
-      <a className="navbar-logo" href="#accueil" aria-label="Cobblemine, accueil" onClick={() => navigate("accueil")}><Image src="/cobblemine-logo.png" alt="Cobblemine" width={1536} height={1024} priority sizes="180px" /></a>
+      <a className="navbar-logo" href="#accueil" aria-label="Cobblemine, accueil" onClick={() => navigate("accueil")}><Image src="/cobblemine-logo-pokeball.png" alt="Cobblemine" width={1536} height={1024} priority sizes="180px" /></a>
       <nav className={`navbar-links${menuOpen ? " is-open" : ""}`} id="main-navigation" aria-label="Navigation principale">
         <a href="#accueil" className={active === "accueil" ? "is-active" : ""} aria-current={active === "accueil" ? "location" : undefined} onClick={() => navigate("accueil")}>ACCUEIL</a>
         <a href="#rejoindre" className={active === "rejoindre" ? "is-active" : ""} aria-current={active === "rejoindre" ? "location" : undefined} onClick={() => navigate("rejoindre")}>JOUER</a>
@@ -38,4 +38,5 @@ export default function Navbar() {
     <dialog className="navbar-dialog" ref={dialog} aria-labelledby="nav-dialog-title" onClick={event => { if (event.target === dialog.current) dialog.current.close(); }}><button className="dialog-close" aria-label="Fermer" onClick={() => dialog.current?.close()}>✕</button><p className="eyebrow">COBBLEMINE</p><h2 id="nav-dialog-title">{information[panel].title}</h2><p>{information[panel].text}</p><button className="button" onClick={() => dialog.current?.close()}>Compris</button></dialog>
   </>;
 }
+
 
