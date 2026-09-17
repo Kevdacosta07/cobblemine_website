@@ -6,9 +6,6 @@ import type * as Three from "three";
 export default function PokemonSky() {
   const host = useRef<HTMLDivElement>(null);
   const [state, setState] = useState("loading");
-  const [paused, setPaused] = useState(false);
-  const pauseRef = useRef(false);
-  useEffect(() => { pauseRef.current = paused; }, [paused]);
   useEffect(() => {
     const container = host.current!;
     let disposed = false, frame = 0;
@@ -70,7 +67,7 @@ export default function PokemonSky() {
         frame=requestAnimationFrame(tick);
         const t=(performance.now()-started)/1000;
         if(!visible || document.hidden)return;
-        const animate=!reduced.matches&&!pauseRef.current;
+        const animate=!reduced.matches;
         entries.forEach((m,i)=>{
           if(m.head){const yaw=animate?pointer.x*.45:0,pitch=animate?pointer.y*.24:0;m.head.rotation.y=THREE.MathUtils.lerp(m.head.rotation.y,yaw,.07);m.head.rotation.x=THREE.MathUtils.lerp(m.head.rotation.x,pitch,.07);}
           m.root.position.y=m.base+(animate?Math.sin(t*.85+i*1.8)*.12:0);
@@ -84,8 +81,9 @@ export default function PokemonSky() {
     start().catch(()=>{if(!disposed)setState("error");});
     return()=>{disposed=true;abort.abort();cancelAnimationFrame(frame);cleanup();renderer?.dispose();renderer?.domElement.remove();};
   },[]);
-  return <div className="pokemon-stage"><div ref={host} className="pokemon-canvas" role="img" aria-label="Pikachu, Évoli et Salamèche en 3D côte à côte, leur tête suit votre souris"/>{state==="loading"&&<p className="scene-status" role="status">Les Pokémon arrivent…</p>}{state==="error"&&<p className="scene-status">La scène 3D n’a pas pu se charger. Essayez un navigateur compatible WebGL.</p>}{state==="ready"&&<><p className="scene-hint">Pikachu · Évoli · Salamèche<span>Déplacez votre souris, ils vous suivent du regard.</span></p><button className="motion-toggle" aria-pressed={paused} onClick={()=>setPaused(!paused)}>{paused?"Activer les animations":"Mettre en pause"}</button></>}</div>;
+  return <div className="pokemon-stage"><div ref={host} className="pokemon-canvas" role="img" aria-label="Pikachu, Évoli et Salamèche en 3D côte à côte, leur tête suit votre souris"/>{state==="loading"&&<p className="scene-status" role="status">Les Pokémon arrivent…</p>}{state==="error"&&<p className="scene-status">La scène 3D n’a pas pu se charger. Essayez un navigateur compatible WebGL.</p>}</div>;
 }
+
 
 
 
