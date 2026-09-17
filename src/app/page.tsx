@@ -1,69 +1,23 @@
 import Image from "next/image";
-
+const questions = [
+  ["Quand ouvrira Cobblemine ?", "La date d’ouverture n’a pas encore été annoncée. Elle sera affichée ici dès qu’elle sera confirmée."],
+  ["Comment rejoindre le serveur ?", "L’adresse du serveur et les instructions d’installation seront ajoutées dans la section « Nous rejoindre ». La version de Minecraft et le modpack seront précisés à ce moment-là."],
+  ["Où trouver le Discord ?", "Le lien d’invitation de la communauté sera publié ici dès qu’il sera disponible."],
+];
+function Brand() {return <a className="brand" href="#accueil" aria-label="Cobblemine, accueil"><span className="brand-mark" aria-hidden="true">C</span>COBBLEMINE</a>;}
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+  return <>
+    <a href="#contenu" className="skip-link">Aller au contenu</a>
+    <header><Brand/><nav aria-label="Navigation principale"><a href="#univers">L’univers</a><a href="#rejoindre">Nous rejoindre</a><a href="#faq">FAQ</a></nav><a className="header-link" href="#rejoindre">L’aventure arrive <span aria-hidden="true">↗</span></a></header>
+    <main id="contenu">
+      <section className="hero" id="accueil" aria-labelledby="hero-title">
+        <div className="hero-copy"><p className="eyebrow">MINECRAFT × COBBLEMON</p><span className="badge">UN NOUVEAU MONDE SE PRÉPARE</span><h1 id="hero-title">Chaque rencontre.<br/>Une nouvelle<br/><em>aventure.</em></h1><p className="intro">Le monde de Minecraft. La magie des Pokémon.<br/>Et bientôt, votre histoire sur Cobblemine.</p><a className="button" href="#univers">Découvrir Cobblemine <span aria-hidden="true">↗</span></a><p className="hero-note">Ouverture à venir · L’aventure commence ici</p></div>
+        <figure className="hero-visual"><Image src="/cobblemon-hero.png" alt="Pandespiègle et Pandarbare dans un jardin de bambous et de cerisiers du mod Cobblemon" fill priority sizes="(max-width: 700px) 100vw, 62vw"/><figcaption><span>BIENVENUE DANS L’UNIVERS COBBLEMON</span><a href="https://modrinth.com/mod/cobblemon/gallery" target="_blank" rel="noreferrer">Visuel du mod Cobblemon ↗</a></figcaption></figure>
+        <div className="hero-bottom"><span>CONSTRUIRE. EXPLORER. RENCONTRER.</span><a href="#univers">DÉFILER <span aria-hidden="true">↓</span></a></div>
+      </section>
+      <section className="section universe" id="univers" aria-labelledby="universe-title"><div className="section-heading"><div><p className="eyebrow">BIENVENUE CHEZ VOUS</p><h2 id="universe-title">Un monde de blocs.<br/><span>Des liens pour de vrai.</span></h2></div><p>Un point de rencontre pour les explorateurs, les bâtisseurs et les dresseurs. Cobblemine prépare le terrain pour votre prochaine aventure Cobblemon.</p></div><div className="features"><article><span className="feature-label">EXPLORER</span><h3>Suivez votre curiosité.</h3><p>Une forêt à traverser, un sommet à atteindre, un endroit où poser vos premiers blocs. Chaque détour fait partie du voyage.</p></article><article><span className="feature-label">RENCONTRER</span><h3>Trouvez vos compagnons.</h3><p>Redécouvrez Minecraft avec les Pokémon de Cobblemon. Votre prochaine rencontre pourrait devenir votre préférée.</p></article><article><span className="feature-label">PARTAGER</span><h3>Écrivez votre histoire.</h3><p>Un camp de base, une équipe, des aventures entre amis. Imaginez dès maintenant votre place dans ce nouveau monde.</p></article></div></section>
+      <section className="join" id="rejoindre" aria-labelledby="join-title"><div><p className="eyebrow">LE DÉBUT D’UNE BELLE HISTOIRE</p><h2 id="join-title">Votre prochaine aventure<br/>est en préparation.</h2><p className="join-description">Encore un peu de patience, dresseur. Les informations pour rejoindre Cobblemine seront ajoutées ici dès qu’elles seront prêtes.</p><span className="badge">OUVERTURE À VENIR</span></div><dl className="join-details">{[["↗","Adresse du serveur","Bientôt disponible"],["#","Discord de la communauté","Le lien sera annoncé ici"],["+","Version & modpack","Les détails arrivent bientôt"]].map(([icon,title,text])=><div key={title}><span className="detail-icon" aria-hidden="true">{icon}</span><div><dt>{title}</dt><dd>{text}</dd></div><span className="pending">À venir</span></div>)}</dl></section>
+      <section className="section faq" id="faq" aria-labelledby="faq-title"><div><p className="eyebrow">AVANT LE PREMIER PAS</p><h2 id="faq-title">Des questions ?</h2></div><div className="questions">{questions.map(([q,a])=><details name="faq" key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section>
+    </main><footer><Brand/><p>Une aventure à construire ensemble.</p><a className="back-top" href="#accueil">Retour en haut ↑</a><small>Projet communautaire indépendant. Non affilié à Mojang, Microsoft, Nintendo ou The Pokémon Company. Illustration : <a href="https://modrinth.com/mod/cobblemon/gallery">galerie officielle Cobblemon</a> ; ne représente pas le serveur.</small></footer>
+  </>;
 }
