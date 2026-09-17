@@ -5,7 +5,7 @@ const questions = [
   ["Comment rejoindre le serveur ?", "L’adresse du serveur et les instructions d’installation seront ajoutées dans la section « Nous rejoindre ». La version de Minecraft et le modpack seront précisés à ce moment-là."],
   ["Où trouver le Discord ?", "Le lien d’invitation de la communauté sera publié ici dès qu’il sera disponible."],
 ];
-function Brand() {return <a className="brand" href="#accueil" aria-label="Cobblemine, accueil"><span className="brand-mark" aria-hidden="true">C</span>COBBLEMINE</a>;}
+function Brand() {return <a className="brand" href="#accueil" aria-label="Cobblemine, accueil"><Image src="/cobblemine-logo.png" alt="Cobblemine" width={150} height={100} /></a>;}
 export default function Home() {
   return <>
     <a href="#contenu" className="skip-link">Aller au contenu</a>
@@ -22,4 +22,5 @@ export default function Home() {
     </main><footer><Brand/><p>Une aventure à construire ensemble.</p><a className="back-top" href="#accueil">Retour en haut ↑</a><small>Projet communautaire indépendant. Non affilié à Mojang, Microsoft, Nintendo ou The Pokémon Company. Illustration : <a href="https://modrinth.com/mod/cobblemon/gallery">galerie officielle Cobblemon</a> ; ne représente pas le serveur.</small></footer>
   </>;
 }
+
 

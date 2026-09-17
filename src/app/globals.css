@@ -1,5 +1,5 @@
 @import "tailwindcss";
-:root{color-scheme:light;--bg:#ffffff;--panel:#f5f5f5;--line:#dedede;--accent:#333333;--text:#202020;--muted:#616161}
+:root{color-scheme:light;--bg:#ffffff;--panel:#f5f5f5;--line:#dedede;--accent:#bb381b;--text:#202020;--muted:#616161}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:35px}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 var(--font-body),sans-serif}
@@ -28,7 +28,7 @@ h1 em{font-style:normal;color:var(--accent)}
 .button:hover{background:#4a4a4a;transform:translateY(-2px)}
 .hero-note{font-size:12px;margin:18px 0 0;color:#686868}
 .hero-visual{position:absolute;inset:0 0 0 34%;margin:0;z-index:-1}
-.hero-visual img{object-fit:cover;object-position:55% center;filter:grayscale(1)}
+.hero-visual img{object-fit:cover;object-position:55% center;filter:none}
 .hero-visual:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(255,255,255,.9) 12%,rgba(255,255,255,.35) 47%,transparent 75%),linear-gradient(0deg,var(--bg),transparent 35%)}
 .hero-visual figcaption{position:absolute;right:6%;bottom:90px;z-index:1;display:flex;flex-direction:column;text-align:right;color:#fff;background:rgba(35,35,35,.75);padding:9px 13px}
 .hero-visual figcaption span{font-size:11px;letter-spacing:1.5px}
@@ -156,3 +156,29 @@ button:focus-visible{outline:3px solid #555;outline-offset:4px}
 @media(max-width:1100px){.site-navbar{gap:10px;padding-left:15px}.navbar-links a,.navbar-links button{padding:15px 10px;font-size:17px}.navbar-logo{font-size:30px;min-width:112px}.navbar-logo span:last-child{font-size:25px}.shop-button{padding:0 12px}}
 @media(max-width:850px){.site-navbar{grid-template-columns:1fr auto;margin:12px;height:70px}.site-navbar .navbar-links{display:none;position:absolute;left:0;right:0;top:calc(100% + 8px);padding:12px;background:#fafafa;border:1px solid #ddd;border-radius:12px;box-shadow:0 10px 25px #0001}.site-navbar .navbar-links.is-open{display:flex;flex-wrap:wrap}.site-navbar .navbar-links a:first-child{display:block}.menu-toggle{display:flex}}
 @media(max-width:440px){.site-navbar{padding:0 9px;gap:5px}.navbar-logo{min-width:94px;font-size:27px}.navbar-logo span:last-child{font-size:23px}.navbar-actions{gap:5px}.shop-button{font-size:15px;padding:0 10px;gap:5px}.shop-button svg{display:none}.cart-button{padding:0 10px;gap:6px}.cart-button>svg:last-child{display:none}.menu-toggle{padding:0 10px}.navbar-dialog{padding:30px 24px}}
+
+
+/* Ember colors shared with the illustrated gaming logo. */
+:root{--ember:#dc451f;--orange:#f78326;--ember-soft:#fff1e9}
+.site-navbar{margin-top:26px;background:#fff;border-color:#ecdcd5;box-shadow:0 3px 0 #fff1e9}
+.site-navbar .navbar-logo{display:block;width:170px;height:112px;min-width:0;padding:0;transform:none;text-shadow:none;-webkit-text-stroke:0;align-self:center}
+.navbar-logo img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 2px #69240f25)}
+.navbar-links a.is-active{background:var(--ember-soft);color:#ad3319}
+.navbar-links a:hover,.navbar-links button:hover{background:#fff1e9;color:#ae341b}
+.shop-button,.button{background:linear-gradient(135deg,#e95420,#c7311f);border-color:#c43b1f;color:#fff;box-shadow:0 4px 0 #922d1d}
+.shop-button:hover,.button:hover{background:linear-gradient(135deg,#ee6527,#da3921)}
+.cart-button{border-color:#ecd6cc;color:#ac361f}
+.cart-button:hover,.menu-toggle:hover{background:#fff1e9}
+.badge{background:#fff2e9;border-color:#f2c9b5;color:#9f371d}
+.hero h1 em{background:linear-gradient(110deg,#c62e1e,#e4661d);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero-note{color:#7a655c}
+.join{background:linear-gradient(120deg,#fff8f3,#f8f8f8 75%);border-color:#e9d9d0}
+.join:before{background:linear-gradient(90deg,#cf371d,#fb992f)}
+.detail-icon{background:#ffe5d6;color:#ac341b}
+.pending{background:#f9e7db;color:#923b22}
+.feature-label,.eyebrow,summary span{color:#b63b1f}
+footer .brand img{width:150px;height:100px;object-fit:contain}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline-color:#bb381b}
+@media(max-width:1100px){.site-navbar .navbar-logo{width:144px;height:100px}}
+@media(max-width:850px){.site-navbar{margin-top:22px}.site-navbar .navbar-links{background:#fff;border-color:#ecdcd5}}
+@media(max-width:440px){.site-navbar .navbar-logo{width:108px;height:82px}.site-navbar{margin-left:10px;margin-right:10px}.navbar-actions{gap:4px}}
