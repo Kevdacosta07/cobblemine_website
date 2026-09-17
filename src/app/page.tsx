@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Navbar from "./navbar";
 const questions = [
   ["Quand ouvrira Cobblemine ?", "La date d’ouverture n’a pas encore été annoncée. Elle sera affichée ici dès qu’elle sera confirmée."],
   ["Comment rejoindre le serveur ?", "L’adresse du serveur et les instructions d’installation seront ajoutées dans la section « Nous rejoindre ». La version de Minecraft et le modpack seront précisés à ce moment-là."],
@@ -8,7 +9,7 @@ function Brand() {return <a className="brand" href="#accueil" aria-label="Cobble
 export default function Home() {
   return <>
     <a href="#contenu" className="skip-link">Aller au contenu</a>
-    <header><Brand/><nav aria-label="Navigation principale"><a href="#univers">L’univers</a><a href="#rejoindre">Nous rejoindre</a><a href="#faq">FAQ</a></nav><a className="header-link" href="#rejoindre">L’aventure arrive <span aria-hidden="true">↗</span></a></header>
+    <Navbar/>
     <main id="contenu">
       <section className="hero" id="accueil" aria-labelledby="hero-title">
         <div className="hero-copy"><p className="eyebrow">MINECRAFT × COBBLEMON</p><span className="badge">UN NOUVEAU MONDE SE PRÉPARE</span><h1 id="hero-title">Chaque rencontre.<br/>Une nouvelle<br/><em>aventure.</em></h1><p className="intro">Le monde de Minecraft. La magie des Pokémon.<br/>Et bientôt, votre histoire sur Cobblemine.</p><a className="button" href="#univers">Découvrir Cobblemine <span aria-hidden="true">↗</span></a><p className="hero-note">Ouverture à venir · L’aventure commence ici</p></div>
@@ -21,3 +22,4 @@ export default function Home() {
     </main><footer><Brand/><p>Une aventure à construire ensemble.</p><a className="back-top" href="#accueil">Retour en haut ↑</a><small>Projet communautaire indépendant. Non affilié à Mojang, Microsoft, Nintendo ou The Pokémon Company. Illustration : <a href="https://modrinth.com/mod/cobblemon/gallery">galerie officielle Cobblemon</a> ; ne représente pas le serveur.</small></footer>
   </>;
 }
+
