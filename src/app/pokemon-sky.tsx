@@ -53,7 +53,7 @@ export default function PokemonSky() {
         const w=container.clientWidth,h=container.clientHeight;
         renderer!.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();
         const narrow=w<500;
-        camera.position.z=narrow ? 130 : 96;
+        camera.position.z=Math.max(narrow ? 90 : 96, (narrow ? 29 : 35) / (Math.tan(THREE.MathUtils.degToRad(17)) * camera.aspect) + 10);
         const placements=narrow ? [[0,0,5,.85],[-16,0,2,.92],[16,0,2,.9]] : [[0,0,10,.97],[-18,0,5,1.1],[18,0,5,1.02]];
         entries.forEach((m,i)=>{const [x,y,z,s]=placements[i];m.root.position.set(x,y,z);m.root.scale.setScalar(s);m.base=y;});
       };
@@ -86,6 +86,7 @@ export default function PokemonSky() {
   },[]);
   return <div className="pokemon-stage"><div ref={host} className="pokemon-canvas" role="img" aria-label="Pikachu, Évoli et Salamèche en 3D côte à côte, leur tête suit votre souris"/>{state==="loading"&&<p className="scene-status" role="status">Les Pokémon arrivent…</p>}{state==="error"&&<p className="scene-status">La scène 3D n’a pas pu se charger. Essayez un navigateur compatible WebGL.</p>}{state==="ready"&&<><p className="scene-hint">Pikachu · Évoli · Salamèche<span>Déplacez votre souris, ils vous suivent du regard.</span></p><button className="motion-toggle" aria-pressed={paused} onClick={()=>setPaused(!paused)}>{paused?"Activer les animations":"Mettre en pause"}</button></>}</div>;
 }
+
 
 
 
