@@ -604,3 +604,7 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .exclusive-browser .exclusive-variant-switch button[aria-pressed=true]{background:#414954;color:#fff;box-shadow:0 1px 4px #0003}
 .exclusive-browser .exclusive-variant-switch button[aria-pressed=true] svg{color:#ffc378}
 .exclusive-browser .exclusive-shop-link:focus-visible,.exclusive-browser .exclusive-selection-card:focus-visible,.exclusive-browser .exclusive-variant-switch button:focus-visible,.exclusive-browser .exclusive-model:focus-visible{outline-color:#ffc378}
+
+.exclusives-section.exclusive-browser{background:linear-gradient(180deg,#090f1940,#090f191a 50%,#090f1966),url('/exclusives-christmas-night.png') center/cover}
+.exclusive-browser .exclusive-selection-card{background:#1b222de8;backdrop-filter:blur(8px)}
+.exclusive-browser .exclusive-selection-card[aria-pressed=true]{background:#30291ff2}
