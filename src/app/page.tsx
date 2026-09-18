@@ -17,7 +17,17 @@ export default function Home() {
         <PokemonSky/>
         
       </section>
-      <section className="section universe" id="univers" aria-labelledby="universe-title"><div className="section-heading"><div><p className="eyebrow">BIENVENUE CHEZ VOUS</p><h2 id="universe-title">Un monde de blocs.<br/><span>Des liens pour de vrai.</span></h2></div><p>Un point de rencontre pour les explorateurs, les bâtisseurs et les dresseurs. Cobblemine prépare le terrain pour votre prochaine aventure Cobblemon.</p></div><div className="features"><article><span className="feature-label">EXPLORER</span><h3>Suivez votre curiosité.</h3><p>Une forêt à traverser, un sommet à atteindre, un endroit où poser vos premiers blocs. Chaque détour fait partie du voyage.</p></article><article><span className="feature-label">RENCONTRER</span><h3>Trouvez vos compagnons.</h3><p>Redécouvrez Minecraft avec les Pokémon de Cobblemon. Votre prochaine rencontre pourrait devenir votre préférée.</p></article><article><span className="feature-label">PARTAGER</span><h3>Écrivez votre histoire.</h3><p>Un camp de base, une équipe, des aventures entre amis. Imaginez dès maintenant votre place dans ce nouveau monde.</p></article></div></section>
+      <section className="events-section" id="univers" aria-labelledby="events-title">
+        <div className="events-card">
+          <Image className="events-backdrop" src="/minecraft-adventure.png" alt="" fill sizes="(max-width: 700px) 90vw, 1120px" />
+          <div className="events-content">
+            <p className="events-label">ÉVÉNEMENTS SPÉCIAUX</p>
+            <h2 id="events-title">Retrouvons-nous<br/>pour la prochaine aventure.</h2>
+            <p className="events-description">Les événements spéciaux de Cobblemine seront l’occasion de se retrouver, de relever des défis et de partager des moments entre joueurs. Le programme et les dates seront annoncés ici à l’approche de l’ouverture.</p>
+            <span className="events-status"><span aria-hidden="true" />Programme à venir</span>
+          </div>
+        </div>
+      </section>
       <section className="join" id="rejoindre" aria-labelledby="join-title"><div><p className="eyebrow">LE DÉBUT D’UNE BELLE HISTOIRE</p><h2 id="join-title">Votre prochaine aventure<br/>est en préparation.</h2><p className="join-description">Encore un peu de patience, dresseur. Les informations pour rejoindre Cobblemine seront ajoutées ici dès qu’elles seront prêtes.</p><span className="badge">OUVERTURE À VENIR</span></div><dl className="join-details">{[["↗","Adresse du serveur","Bientôt disponible"],["#","Discord de la communauté","Le lien sera annoncé ici"],["+","Version & modpack","Les détails arrivent bientôt"]].map(([icon,title,text])=><div key={title}><span className="detail-icon" aria-hidden="true">{icon}</span><div><dt>{title}</dt><dd>{text}</dd></div><span className="pending">À venir</span></div>)}</dl></section>
       <section className="section faq" id="faq" aria-labelledby="faq-title"><div><p className="eyebrow">AVANT LE PREMIER PAS</p><h2 id="faq-title">Des questions ?</h2></div><div className="questions">{questions.map(([q,a])=><details name="faq" key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section>
     </main><footer><Brand/><p>Une aventure à construire ensemble.</p><a className="back-top" href="#accueil">Retour en haut ↑</a><small>Projet communautaire indépendant. Non affilié à Mojang, Microsoft, Nintendo ou The Pokémon Company. Modèles et textures : <a href="https://cobblemon.com">Cobblemon</a>.</small></footer>
