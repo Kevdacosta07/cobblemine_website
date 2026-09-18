@@ -626,3 +626,53 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .exclusive-snow .snow-spark{box-shadow:0 0 14px #ffd38baa}
 .exclusive-snow .snow-spark::before{height:12px}.exclusive-snow .snow-spark::after{width:12px}
 @media(max-width:700px){.exclusive-snow .snow-particle:nth-child(2n){display:block}.exclusive-snow .snow-particle:nth-child(3n){display:none}}
+
+/* Join invitation: molten lava rises inside an otherwise restrained button. */
+.join-invitation{padding:80px 5.5%;background:#fff}
+.join-invitation-card{position:relative;isolation:isolate;overflow:hidden;max-width:1120px;min-height:430px;margin:auto;border-radius:20px;background:#101923;box-shadow:0 14px 40px #27313a12;display:flex;align-items:center}
+.join-invitation-image{object-fit:cover;object-position:center;z-index:-2}
+.join-invitation-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#080f1cf2 0%,#080f1cb5 45%,#080f1c12 100%)}
+.join-invitation-copy{padding:56px;max-width:630px;color:#fff}
+.join-invitation-copy h2{font-size:clamp(36px,3.6vw,50px);line-height:1.1;letter-spacing:-.7px;margin:0 0 24px}
+.join-invitation-description{font-size:15px;line-height:1.85;color:#d4dae1;max-width:440px;margin:0 0 30px}
+.magma-button{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;min-height:54px;padding:16px 24px;border:1px solid #f491465c;border-radius:9px;background:#201715;color:#ffdaa6;box-shadow:inset 0 1px 0 #ffffff0d,0 4px 0 #0a0b0e;cursor:pointer;font:600 14px/1.4 var(--font-body),sans-serif;transition:box-shadow .35s,border-color .35s,color .35s,transform .2s}
+.magma-button-label{position:relative;z-index:2;display:flex;align-items:center;gap:28px;text-shadow:0 1px 3px #30100080}
+.magma-liquid{position:absolute;inset:-70% -20%;z-index:0;background:radial-gradient(ellipse at 30% 60%,#fff19b 0%,#ffb019 16%,transparent 42%),radial-gradient(ellipse at 75% 35%,#ffc83f 0%,#ff5412 28%,transparent 52%),linear-gradient(20deg,#ba1707,#ff710c 45%,#ed2909);transform:translateY(84%);transition:transform .7s cubic-bezier(.22,1,.36,1);border-radius:43% 49% 0 0}
+.magma-liquid i{position:absolute;width:55%;height:90%;border-radius:43% 57% 61% 39%;background:#6b130ab0;filter:blur(3px);animation:magma-circulate 5s linear infinite;animation-play-state:paused;left:0;top:-30%}
+.magma-liquid i:nth-child(2){left:45%;top:45%;width:65%;background:#ffdc4680;animation-duration:7s;animation-direction:reverse}
+.magma-liquid i:nth-child(3){left:62%;top:-30%;width:36%;background:#a8240aa6;animation-duration:4s}
+.magma-button:is(:hover,:focus-visible){color:#fff;border-color:#ff9d39;box-shadow:inset 0 1px 0 #ffd99060,0 4px 0 #711c0b,0 0 28px #ff600c45;transform:translateY(-1px)}
+.magma-button:is(:hover,:focus-visible) .magma-liquid{transform:translateY(0)}
+.magma-button:is(:hover,:focus-visible) .magma-liquid i{animation-play-state:running}
+.magma-button:focus-visible{outline:2px solid #ffe4ad;outline-offset:5px}
+.magma-button:active{transform:translateY(2px)}
+@keyframes magma-circulate{0%{transform:translate(-10%,0) rotate(0deg) scale(1)}50%{transform:translate(20%,10%) rotate(180deg) scale(1.2)}100%{transform:translate(-10%,0) rotate(360deg) scale(1)}}
+.join-invitation-status{display:flex;align-items:center;gap:8px;font-size:11px;color:#abb3be;margin:20px 0 0}
+.join-invitation-status>span{width:5px;height:5px;border-radius:50%;background:#ffc16e}
+.join-connection-details{margin:0 0 26px}.join-connection-details>div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #e9ecef;font-size:13px}.join-connection-details dt{font-weight:600}.join-connection-details dd{margin:0;color:#75808c;text-align:right}
+@media(max-width:700px){.join-invitation{padding:42px 5.5%}.join-invitation-card{min-height:420px;border-radius:14px}.join-invitation-copy{padding:34px 24px}.join-invitation-image{object-position:65% center}.join-invitation-card::after{background:linear-gradient(90deg,#080f1ce8,#080f1c88)}.join-invitation-description{font-size:14px}.magma-button{padding:14px 19px}}
+@media(hover:none){.magma-liquid{transform:translateY(30%)}.magma-button{color:#fff}}
+@media(prefers-reduced-motion:reduce){.magma-button,.magma-liquid{transition:none}.magma-liquid i{animation:none}}
+
+/* Animated FAQ: content height, reveal and icon move together. */
+.faq-section{padding:12px 5.5% 88px;background:#fff;color:#27313a}
+.faq-layout{max-width:1120px;margin:auto;display:grid;grid-template-columns:1fr 1.4fr;gap:72px;align-items:start}
+.faq-introduction .shop-label{margin-bottom:15px}
+.faq-introduction h2{font-size:clamp(32px,3.2vw,43px);line-height:1.12;letter-spacing:-.7px;margin:0 0 20px}
+.faq-introduction>p:last-child{color:#78818b;max-width:290px;font-size:14px;line-height:1.8;margin:0}
+.faq-accordion{display:flex;flex-direction:column;gap:12px}
+.faq-item{border:1px solid #e7e9ec;border-radius:12px;background:#fafbfc;transition:border-color .3s,background .3s,box-shadow .3s;overflow:hidden}
+.faq-item.is-open{border-color:#eccba2;background:#fffaf4;box-shadow:0 6px 20px #b1761710}
+.faq-item h3{margin:0;font:inherit}
+.faq-trigger{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;padding:23px 24px;border:0;background:transparent;color:#27313a;text-align:left;font:600 15px/1.5 var(--font-body),sans-serif;cursor:pointer}
+.faq-trigger:hover{color:#a75b12}
+.faq-trigger:focus-visible{outline:2px solid #c97217;outline-offset:-4px;border-radius:12px}
+.faq-toggle-icon{display:grid;place-items:center;flex-shrink:0;width:30px;height:30px;border:1px solid #e1e5e9;border-radius:50%;background:#fff;color:#687481;transition:transform .4s cubic-bezier(.22,1,.36,1),background .3s,color .3s,border-color .3s}
+.faq-item.is-open .faq-toggle-icon{transform:rotate(135deg);background:#ffead0;color:#a65a15;border-color:#f4d3a7}
+.faq-answer{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .4s cubic-bezier(.22,1,.36,1),opacity .25s,visibility .4s}
+.faq-item.is-open .faq-answer{grid-template-rows:1fr;opacity:1;visibility:visible}
+.faq-answer-clip{overflow:hidden;min-height:0}
+.faq-answer p{font-size:14px;line-height:1.85;color:#687481;padding:0 24px 24px;margin:0;transform:translateY(-6px);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.faq-item.is-open .faq-answer p{transform:translateY(0)}
+@media(max-width:700px){.faq-section{padding:8px 5.5% 48px}.faq-layout{grid-template-columns:1fr;gap:26px}.faq-introduction>p:last-child{max-width:100%}.faq-trigger{padding:18px;font-size:14px;gap:12px}.faq-answer p{padding:0 18px 20px}.faq-introduction h2{font-size:34px}}
+@media(prefers-reduced-motion:reduce){.faq-item,.faq-toggle-icon,.faq-answer,.faq-answer p{transition:none}}
