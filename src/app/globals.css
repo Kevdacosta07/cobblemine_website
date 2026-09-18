@@ -275,3 +275,11 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .hero .badge{color:#e6e9ed;background:#ffffff0d;border-color:#ffffff30}
 .hero .eyebrow{color:#e6e9ed}
 
+
+/* Minimal hero: one heading, one description, one action. */
+.hero .hero-copy{padding:32px 0 32px 7%;width:52%}
+.hero .hero-copy h1{font-size:clamp(44px,5vw,76px);line-height:1.04;letter-spacing:-.035em;margin:0 0 22px;font-weight:600}
+.hero .hero-copy .intro{font-size:16px;line-height:1.6;margin:0 0 32px;color:#eef0f2}
+.hero .hero-copy .button{font-family:var(--font-body),sans-serif;font-size:14px;font-weight:600;padding:13px 20px;border-radius:7px;gap:22px;min-height:48px;text-transform:none;letter-spacing:0}
+@media(max-width:700px){.hero .hero-copy{width:100%;padding:38px 7% 14px}.hero .hero-copy h1{font-size:40px;margin-bottom:16px}.hero .hero-copy .intro{font-size:14px;margin-bottom:22px}.hero .hero-copy .button{padding:11px 17px;min-height:44px}}
+
