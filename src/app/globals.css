@@ -462,3 +462,9 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .exclusive-carousel-bottom p{margin:0}.exclusive-carousel-bottom a{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:900px){.exclusive-card{flex-basis:calc((100% - 20px)/2.25)}}
 @media(max-width:600px){.exclusive-carousel-section{padding:44px 5.5%}.exclusive-carousel-heading{align-items:flex-start;gap:16px}.exclusive-carousel-heading h2{font-size:32px}.exclusive-carousel-heading p:last-child{font-size:13px}.exclusive-arrows{gap:5px}.exclusive-arrows button{width:34px;height:34px;font-size:18px}.exclusive-card{flex-basis:86%}.exclusive-card-preview .exclusive-model{height:270px}.exclusive-carousel-bottom{flex-direction:column;gap:10px}}
+
+/* Drag the model; swipe captions to browse cards. */
+.exclusive-card-preview{pointer-events:auto}
+.exclusive-card-preview .exclusive-model{cursor:grab;touch-action:none}
+.exclusive-card-preview .exclusive-model:active{cursor:grabbing}
+.exclusive-card-preview .exclusive-model:focus-visible{outline:2px solid #f5a623;outline-offset:-4px;border-radius:16px}

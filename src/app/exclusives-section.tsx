@@ -27,7 +27,7 @@ function PokemonCard({ item }: { item: typeof pokemon[number] }) {
     return () => observer.disconnect();
   }, []);
   return <article ref={card} className="exclusive-card" aria-label={`${item.name} de Noël`}>
-    <div className="exclusive-card-preview">{visible ? <Viewer species={item.id} shiny={shiny} name={item.name} interactive={false}/> : <div className="exclusive-model"/>}</div>
+    <div className="exclusive-card-preview">{visible ? <Viewer species={item.id} shiny={shiny} name={item.name}/> : <div className="exclusive-model"/>}</div>
     <div className="exclusive-card-copy"><span className="exclusive-card-edition">ÉDITION NOËL</span><h3>{item.name}</h3><p>{item.type}</p>
       <button className="exclusive-shiny" aria-pressed={shiny} onClick={() => setShiny(!shiny)} aria-label={`Afficher ${item.name} ${shiny ? "original" : "chromatique"}`}>✦ {shiny ? "Chromatique" : "Voir le chromatique"}</button>
     </div>
@@ -57,7 +57,7 @@ export default function ExclusivesSection() {
       <div className="exclusive-track" ref={track} role="region" aria-label="Collection de Pokémon exclusifs, défilement horizontal" tabIndex={0} onKeyDown={event => { if (event.target === event.currentTarget && ["ArrowLeft", "ArrowRight"].includes(event.key)) { event.preventDefault(); move(event.key === "ArrowLeft" ? -1 : 1); } }}>
         {pokemon.map(item => <PokemonCard key={item.id} item={item}/>)}
       </div>
-      <div className="exclusive-carousel-bottom"><p>À découvrir lors de nos événements spéciaux.</p><a href="/exclusives/CREDITS-Collection-Noel.txt" target="_blank" rel="noopener noreferrer">Crédits des créations ↗</a></div>
+      <div className="exclusive-carousel-bottom"><p>Faites glisser les Pokémon pour les tourner · Double-clic pour recentrer.</p><a href="/exclusives/CREDITS-Collection-Noel.txt" target="_blank" rel="noopener noreferrer">Crédits des créations ↗</a></div>
     </div>
   </section>;
 }
