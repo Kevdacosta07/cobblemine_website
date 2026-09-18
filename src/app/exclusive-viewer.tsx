@@ -139,5 +139,5 @@ export default function ExclusiveViewer({ species, shiny, name, interactive = tr
       material?.dispose(); texture?.dispose(); renderer?.dispose(); renderer?.domElement.remove();
     };
   }, [species, shiny, interactive, autoRotate]);
-  return <div className="exclusive-model" tabIndex={interactive ? 0 : undefined} role="img" aria-label={`${name} de Noël en 3D${shiny ? ", variante chromatique" : ""}. ${interactive ? "Faites glisser ou utilisez les quatre flèches pour tourner le modèle dans tous les sens. Double-clic ou touche Début pour recentrer." : ""}`}><div className="exclusive-canvas" ref={host} />{status && <p className="exclusive-loading" role="status">{status}</p>}</div>;
+  return <div className="exclusive-model" tabIndex={interactive ? 0 : undefined} role="img" aria-label={`${name} de Noël en 3D${shiny ? ", variante shiny" : ""}. ${interactive ? "Faites glisser ou utilisez les quatre flèches pour tourner le modèle dans tous les sens. Double-clic ou touche Début pour recentrer." : ""}`}><div className="exclusive-canvas" ref={host} />{status && <p className="exclusive-loading" role="status">{status}</p>}</div>;
 }
