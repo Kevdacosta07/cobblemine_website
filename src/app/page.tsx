@@ -13,7 +13,7 @@ export default function Home() {
     <Navbar/>
     <main id="contenu">
       <section className="hero" id="accueil" aria-labelledby="hero-title">
-        <div className="hero-copy"><h1 id="hero-title">Bienvenue sur<br/><span className="hero-brand-gradient">Cobblemine</span>.</h1><p className="intro">Partez à l’aventure sur Cobblemine.</p><a className="button" href="#rejoindre">Nous rejoindre <span aria-hidden="true">→</span></a></div>
+        <div className="hero-copy"><h1 id="hero-title">Partez à l’aventure<br/>sur <span className="hero-brand-gradient">Cobblemine</span>.</h1><p className="intro">Cobblemine est un serveur Minecraft en préparation qui réunit la liberté de construire et d’explorer avec les Pokémon du mod Cobblemon. Parcourez les biomes à leur rencontre, capturez vos compagnons et faites grandir votre équipe au fil de vos découvertes. Installez votre base, partez en expédition et partagez vos aventures avec d’autres joueurs : à vous de choisir comment écrire votre histoire.</p><a className="button" href="#rejoindre">Nous rejoindre <span aria-hidden="true">→</span></a></div>
         <PokemonSky/>
         
       </section>
