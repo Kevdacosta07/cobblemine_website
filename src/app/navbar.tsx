@@ -1,31 +1,44 @@
 "use client";
-import Image from "next/image";
+
 import { useRef, useState } from "react";
-const panels = {
-  wiki: { title: "Les guides arrivent bientôt", text: "La version de Minecraft, le modpack et les étapes d’installation seront précisés avant l’ouverture." },
-  discord: { title: "Retrouvons-nous bientôt", text: "Le lien du Discord sera publié ici dès que la communauté sera prête à vous accueillir." },
-  boutique: { title: "La boutique se prépare", text: "Aucun achat n’est disponible pour le moment. Retrouvez les informations ici à l’ouverture." },
+import Image from "next/image";
+
+const information = {
+  votes: { title: "Votes bientôt disponibles", text: "Les liens pour soutenir Cobblemine seront ajoutés à l’ouverture du serveur." },
+  wiki: { title: "Le wiki se prépare", text: "Les guides du serveur et les informations sur le modpack seront disponibles ici prochainement." },
+  discord: { title: "La communauté arrive", text: "Le lien du Discord de Cobblemine sera annoncé dès qu’il sera disponible." },
+  boutique: { title: "La boutique se prépare", text: "La boutique n’est pas encore ouverte. Aucun achat n’est disponible pour le moment." },
+  panier: { title: "Votre panier est vide", text: "La boutique de Cobblemine sera disponible prochainement." },
 };
-type Panel = keyof typeof panels;
-function Icon({kind}:{kind:string}) { return <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{kind==="home"?<><path d="m3 10 9-7 9 7v11h-6v-7H9v7H3z"/></>:kind==="news"?<><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h6M9 18h3"/></>:kind==="book"?<><path d="M12 5v16M3 4c4-1 7 0 9 1 2-1 5-2 9-1v15c-4-1-7 0-9 2-2-2-5-3-9-2z"/></>:kind==="shop"?<><path d="M4 9h16v12H4zM3 9l2-6h14l2 6M9 21v-7h6v7"/></>:<><path d="M21 11a8 8 0 0 1-8 8H7l-5 3 2-6a8 8 0 1 1 17-5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></>}</svg> }
-export default function Navbar(){
- const dialog=useRef<HTMLDialogElement>(null);const [panel,setPanel]=useState<Panel>("wiki");const [active,setActive]=useState("accueil");const [open,setOpen]=useState(false);
- function show(p:Panel){setPanel(p);setOpen(false);dialog.current?.showModal();}
- function go(p:string){setActive(p);setOpen(false);}
- return <>
-  <header className="topbar"><a href="#accueil" className="wordmark">COBBLEMINE <span>/ L’AVENTURE</span></a><span className="topbar-status">Un nouveau monde se prépare</span><button className="mobile-menu" onClick={()=>setOpen(!open)} aria-label={open?"Fermer le menu":"Ouvrir le menu"} aria-expanded={open} aria-controls="navigation">{open?"✕":"☰"}</button></header>
-  <aside className={`sidebar${open?" is-open":""}`}>
-   <a className="sidebar-logo" href="#accueil" onClick={()=>go("accueil")}><Image src="/cobblemine-logo-approved.png" alt="Cobblemine, accueil" width={240} height={160} priority/></a>
-   <nav id="navigation" aria-label="Navigation principale">
-    <a href="#accueil" className={active==="accueil"?"active":""} onClick={()=>go("accueil")} aria-current={active==="accueil"?"location":undefined}><Icon kind="home"/>Accueil</a>
-    <a href="#actualites" className={active==="actualites"?"active":""} onClick={()=>go("actualites")} aria-current={active==="actualites"?"location":undefined}><Icon kind="news"/>Actualités</a>
-    <button onClick={()=>show("wiki")}><Icon kind="book"/>Guides</button>
-    <button onClick={()=>show("discord")}><Icon kind="chat"/>Discord</button>
-    <button onClick={()=>show("boutique")}><Icon kind="shop"/>Boutique</button>
-   </nav>
-   <div className="sidebar-caption"><svg className="compass" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5Z"/></svg><p>Des mondes à découvrir.<br/>Une aventure à écrire.</p><small>MINECRAFT JAVA · COBBLEMON</small></div>
-  </aside>
-  <dialog ref={dialog} className="info-dialog" aria-labelledby="dialog-title" onClick={e=>{if(e.target===dialog.current)dialog.current.close();}}><button className="dialog-close" aria-label="Fermer" onClick={()=>dialog.current?.close()}>✕</button><p className="eyebrow">COBBLEMINE</p><h2 id="dialog-title">{panels[panel].title}</h2><p>{panels[panel].text}</p><button className="quiet-button" onClick={()=>dialog.current?.close()}>Compris →</button></dialog>
- </>;
+type Panel = keyof typeof information;
+
+function CartIcon() {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M3 4h2l2.2 10h10.9l2-7H6" strokeLinecap="round" strokeLinejoin="round"/><circle cx="9" cy="19" r="1"/><circle cx="17" cy="19" r="1"/></svg>;
 }
+
+export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [panel, setPanel] = useState<Panel>("boutique");
+  const [active, setActive] = useState("accueil");
+  const dialog = useRef<HTMLDialogElement>(null);
+  function openPanel(next: Panel) { setPanel(next); setMenuOpen(false); dialog.current?.showModal(); }
+  function navigate(next: string) { setActive(next); setMenuOpen(false); }
+  return <>
+    <header className="site-navbar">
+      <a className="navbar-logo" href="#accueil" aria-label="Cobblemine, accueil" onClick={() => navigate("accueil")}><Image src="/cobblemine-logo-approved.png" alt="Cobblemine" width={1536} height={1024} priority sizes="180px" /></a>
+      <nav className={`navbar-links${menuOpen ? " is-open" : ""}`} id="main-navigation" aria-label="Navigation principale">
+        <a href="#accueil" className={active === "accueil" ? "is-active" : ""} aria-current={active === "accueil" ? "location" : undefined} onClick={() => navigate("accueil")}>ACCUEIL</a>
+        <a href="#rejoindre" className={active === "rejoindre" ? "is-active" : ""} aria-current={active === "rejoindre" ? "location" : undefined} onClick={() => navigate("rejoindre")}>JOUER</a>
+        <button onClick={() => openPanel("votes")}>VOTES</button>
+        <button onClick={() => openPanel("wiki")}>WIKI</button>
+        <button onClick={() => openPanel("discord")}>DISCORD</button>
+      </nav>
+      <div className="navbar-actions"><button className="shop-button" onClick={() => openPanel("boutique")}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M4 9h16v11H4zM3 9l2-6h14l2 6M9 20v-7h6v7M3 9c0 3 4 3 4 0 0 3 5 3 5 0 0 3 5 3 5 0 0 3 4 3 4 0" strokeLinejoin="round"/></svg>BOUTIQUE</button><button className="cart-button" aria-label="Ouvrir le panier, 0 article" onClick={() => openPanel("panier")}><CartIcon/><span>0</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" aria-hidden="true"><path d="m3 4 3 3 3-3"/></svg></button><button className="menu-toggle" aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? "✕" : "☰"}</button></div>
+    </header>
+    <dialog className="navbar-dialog" ref={dialog} aria-labelledby="nav-dialog-title" onClick={event => { if (event.target === dialog.current) dialog.current.close(); }}><button className="dialog-close" aria-label="Fermer" onClick={() => dialog.current?.close()}>✕</button><p className="eyebrow">COBBLEMINE</p><h2 id="nav-dialog-title">{information[panel].title}</h2><p>{information[panel].text}</p><button className="button" onClick={() => dialog.current?.close()}>Compris</button></dialog>
+  </>;
+}
+
+
+
 
