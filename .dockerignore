@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+.git
+.openai
+.sites-runtime
+.env*
+*.log
+*.tsbuildinfo
+public/cobblemine-logo-v3.png
