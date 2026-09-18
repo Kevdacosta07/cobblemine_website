@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Navbar from "./navbar";
 import PokemonSky from "./pokemon-sky";
+import EventsButton from "./events-button";
 const questions = [
   ["Quand ouvrira Cobblemine ?", "La date d’ouverture n’a pas encore été annoncée. Elle sera affichée ici dès qu’elle sera confirmée."],
   ["Comment rejoindre le serveur ?", "L’adresse du serveur et les instructions d’installation seront ajoutées dans la section « Nous rejoindre ». La version de Minecraft et le modpack seront précisés à ce moment-là."],
@@ -24,7 +25,7 @@ export default function Home() {
             <p className="events-label">ÉVÉNEMENTS SPÉCIAUX</p>
             <h2 id="events-title">Retrouvons-nous<br/>pour la prochaine aventure.</h2>
             <p className="events-description">Les événements spéciaux de Cobblemine seront l’occasion de se retrouver, de relever des défis et de partager des moments entre joueurs. Le programme et les dates seront annoncés ici à l’approche de l’ouverture.</p>
-            <span className="events-status"><span aria-hidden="true" />Programme à venir</span>
+            <EventsButton/>
           </div>
         </div>
       </section>
