@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { createPokemon, type Bedrock } from "./pokemon-model";
 
-export default function ExclusiveViewer({ species, shiny, name }: { species: string; shiny: boolean; name: string }) {
+export default function ExclusiveViewer({ species, shiny, name, interactive = true }: { species: string; shiny: boolean; name: string; interactive?: boolean }) {
   const host = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState("Chargement du modèle…");
   useEffect(() => {
@@ -43,9 +43,11 @@ export default function ExclusiveViewer({ species, shiny, name }: { species: str
         }
         // Hide alternate facial expressions that are normally controlled by the game poser.
         for (const [boneName, bone] of pokemon.bones) {
-          if (/mouth_open|eyelid|acting_teeth|eyeshine.*2$/.test(boneName)) bone.visible = false;
+          if (/mouth_open|eyelid|acting_teeth|eyeshine.*2$|^vines$/.test(boneName)) bone.visible = false;
         }
-        const bounds = new THREE.Box3().setFromObject(root);
+        root.updateMatrixWorld(true);
+        const bounds = new THREE.Box3();
+        root.traverseVisible(object => { if (object instanceof THREE.Mesh) bounds.expandByObject(object); });
         const center = bounds.getCenter(new THREE.Vector3());
         const size = bounds.getSize(new THREE.Vector3());
         root.position.sub(center);
@@ -81,5 +83,5 @@ export default function ExclusiveViewer({ species, shiny, name }: { species: str
       material?.dispose(); texture?.dispose(); renderer?.dispose(); renderer?.domElement.remove();
     };
   }, [species, shiny]);
-  return <div className="exclusive-model" tabIndex={0} role="img" aria-label={`${name} de Noël en 3D${shiny ? ", variante chromatique" : ""}. Faites glisser ou utilisez les flèches gauche et droite pour tourner le modèle.`}><div className="exclusive-canvas" ref={host} />{status && <p className="exclusive-loading" role="status">{status}</p>}</div>;
+  return <div className="exclusive-model" tabIndex={interactive ? 0 : undefined} role="img" aria-label={`${name} de Noël en 3D${shiny ? ", variante chromatique" : ""}. ${interactive ? "Faites glisser ou utilisez les flèches gauche et droite pour tourner le modèle." : ""}`}><div className="exclusive-canvas" ref={host} />{status && <p className="exclusive-loading" role="status">{status}</p>}</div>;
 }

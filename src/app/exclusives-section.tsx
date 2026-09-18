@@ -17,34 +17,47 @@ const pokemon = [
   { id: "snorlax", name: "Ronflex", type: "Normal" },
 ];
 
-export default function ExclusivesSection() {
-  const [selected, setSelected] = useState(0);
-  const [ready, setReady] = useState(false);
-  const section = useRef<HTMLElement>(null);
+function PokemonCard({ item }: { item: typeof pokemon[number] }) {
+  const card = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [shiny, setShiny] = useState(false);
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setReady(true); observer.disconnect(); }
-    }, { rootMargin: "300px" });
-    if (section.current) observer.observe(section.current);
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { rootMargin: "120px" });
+    if (card.current) observer.observe(card.current);
     return () => observer.disconnect();
   }, []);
-  const [shiny, setShiny] = useState(false);
-  const current = pokemon[selected];
-  return <section ref={section} className="exclusives-section" id="exclusifs" aria-labelledby="exclusives-title">
+  return <article ref={card} className="exclusive-card" aria-label={`${item.name} de Noël`}>
+    <div className="exclusive-card-preview">{visible ? <Viewer species={item.id} shiny={shiny} name={item.name} interactive={false}/> : <div className="exclusive-model"/>}</div>
+    <div className="exclusive-card-copy"><span className="exclusive-card-edition">ÉDITION NOËL</span><h3>{item.name}</h3><p>{item.type}</p>
+      <button className="exclusive-shiny" aria-pressed={shiny} onClick={() => setShiny(!shiny)} aria-label={`Afficher ${item.name} ${shiny ? "original" : "chromatique"}`}>✦ {shiny ? "Chromatique" : "Voir le chromatique"}</button>
+    </div>
+  </article>;
+}
+
+export default function ExclusivesSection() {
+  const track = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ start: true, end: false });
+  useEffect(() => {
+    const element = track.current!;
+    const update = () => setPosition({ start: element.scrollLeft < 8, end: element.scrollLeft + element.clientWidth >= element.scrollWidth - 8 });
+    element.addEventListener("scroll", update, { passive: true });
+    const observer = new ResizeObserver(update); observer.observe(element); update();
+    return () => { element.removeEventListener("scroll", update); observer.disconnect(); };
+  }, []);
+  function move(direction: number) {
+    const element = track.current!;
+    const width = element.firstElementChild?.getBoundingClientRect().width ?? 320;
+    element.scrollBy({ left: direction * (width + 20), behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  }
+  return <section className="exclusives-section exclusive-carousel-section" id="exclusifs" aria-labelledby="exclusives-title">
     <div className="exclusives-inner">
-      <div className="exclusives-heading"><p className="shop-label">LES EXCLUSIVITÉS COBBLEMINE</p><h2 id="exclusives-title">Vos Pokémon, autrement.</h2><p>Des modèles personnalisés à découvrir sur le serveur.<br/>Explorez notre collection de Noël sous tous les angles.</p></div>
-      <div className="exclusive-showcase">
-        <div className="exclusive-stage">{ready ? <Viewer species={current.id} shiny={shiny} name={current.name}/> : <div className="exclusive-model"/>}<span className="exclusive-rotate" aria-hidden="true">↔ Faites glisser pour tourner</span></div>
-        <div className="exclusive-info">
-          <span className="exclusive-collection">COLLECTION DE NOËL · 11 POKÉMON</span>
-          <div aria-live="polite"><h3>{current.name}</h3><p className="exclusive-type">{current.type}</p></div>
-          <p className="exclusive-description">Une version festive avec son modèle et ses textures personnalisés. Découvrez ses détails en 3D et sa variante chromatique.</p>
-          <div className="exclusive-variants" role="group" aria-label="Apparence du Pokémon"><button aria-pressed={!shiny} onClick={() => setShiny(false)}>Original</button><button aria-pressed={shiny} onClick={() => setShiny(true)}>✦ Chromatique</button></div>
-          <p className="exclusive-availability">Les modalités d’obtention seront annoncées lors des événements.</p>
-        </div>
+      <div className="exclusive-carousel-heading"><div><p className="shop-label">COLLECTION DE NOËL · 11 POKÉMON</p><h2 id="exclusives-title">Des rencontres exclusives.</h2><p>Vos Pokémon préférés, dans des versions créées pour le serveur.</p></div>
+        <div className="exclusive-arrows"><button aria-label="Pokémon précédents" disabled={position.start} onClick={() => move(-1)}>←</button><button aria-label="Pokémon suivants" disabled={position.end} onClick={() => move(1)}>→</button></div>
       </div>
-      <div className="exclusive-picker" role="group" aria-label="Choisir un Pokémon exclusif">{pokemon.map((item, index) => <button key={item.id} aria-pressed={index === selected} onClick={() => setSelected(index)}>{item.name}</button>)}</div>
-      <p className="exclusive-credits">Collection de Noël Cobblemine. <a href="/exclusives/CREDITS-Collection-Noel.txt" target="_blank" rel="noopener noreferrer">Crédits des créations ↗</a></p>
+      <div className="exclusive-track" ref={track} role="region" aria-label="Collection de Pokémon exclusifs, défilement horizontal" tabIndex={0} onKeyDown={event => { if (event.target === event.currentTarget && ["ArrowLeft", "ArrowRight"].includes(event.key)) { event.preventDefault(); move(event.key === "ArrowLeft" ? -1 : 1); } }}>
+        {pokemon.map(item => <PokemonCard key={item.id} item={item}/>)}
+      </div>
+      <div className="exclusive-carousel-bottom"><p>À découvrir lors de nos événements spéciaux.</p><a href="/exclusives/CREDITS-Collection-Noel.txt" target="_blank" rel="noopener noreferrer">Crédits des créations ↗</a></div>
     </div>
   </section>;
 }
