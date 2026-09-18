@@ -310,8 +310,8 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 
 .events-section{padding:80px 5.5%}
 .events-card{position:relative;isolation:isolate;overflow:hidden;max-width:1120px;min-height:420px;margin:0 auto;border:1px solid #d9dee3;border-radius:20px;display:flex;align-items:center;background:#172320;box-shadow:0 14px 40px #27313a12}
-.events-backdrop{object-fit:cover;object-position:center 58%;z-index:-2}
-.events-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0c1919ed 0%,#0c1919bc 48%,#0c191933 100%)}
+.events-backdrop{object-fit:cover;object-position:center 36%;z-index:-2}
+.events-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#080f1cc9 0%,#080f1c85 48%,#080f1c0d 100%)}
 .events-content{padding:56px;max-width:660px;color:#fff}
 .events-label{font-size:11px;font-weight:700;letter-spacing:2px;color:#ffb754;margin-bottom:20px}
 .events-content h2{font-size:clamp(32px,3.4vw,46px);line-height:1.12;letter-spacing:-.8px;margin-bottom:22px}

@@ -19,7 +19,7 @@ export default function Home() {
       </section>
       <section className="events-section" id="univers" aria-labelledby="events-title">
         <div className="events-card">
-          <Image className="events-backdrop" src="/minecraft-adventure.png" alt="" fill sizes="(max-width: 700px) 90vw, 1120px" />
+          <Image className="events-backdrop" src="/events-cave.png" alt="" fill sizes="(max-width: 700px) 90vw, 1120px" />
           <div className="events-content">
             <p className="events-label">ÉVÉNEMENTS SPÉCIAUX</p>
             <h2 id="events-title">Retrouvons-nous<br/>pour la prochaine aventure.</h2>
