@@ -675,3 +675,9 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .faq-item.is-open .faq-answer p{transform:translateY(0)}
 @media(max-width:700px){.faq-section{padding:60px 5.5% 64px}.faq-introduction{margin-bottom:30px}.faq-label{font-size:12px}.faq-trigger{min-height:76px;padding:23px 2px;font-size:16px;gap:22px}.faq-answer p{padding:0 28px 24px 2px;font-size:14px}.faq-introduction h2{letter-spacing:-.5px}}
 @media(prefers-reduced-motion:reduce){.faq-item,.faq-toggle-icon,.faq-answer,.faq-answer p{transition:none}}
+
+/* Account access remains visible at every screen size. */
+.navbar-account{display:flex;align-items:center;justify-content:center;gap:8px;min-width:44px;height:44px;padding:0 12px;border:1px solid #e5ded8;border-radius:8px;color:#62584f;font-size:12px;font-weight:600;white-space:nowrap}.navbar-account:hover{background:#fff1e9;color:#ae341b}.navbar-account span{max-width:125px;overflow:hidden;text-overflow:ellipsis}.site-navbar .navbar-links .mobile-account-link{display:none}
+@media(min-width:851px) and (max-width:1200px){.navbar-account span{display:none}.navbar-account{padding:0 10px}.site-navbar .navbar-links a,.site-navbar .navbar-links button{padding:0 8px}}
+@media(max-width:850px){.navbar-account span{display:none}.navbar-account{padding:0 10px}.site-navbar .navbar-links .mobile-account-link{display:flex}}
+@media(max-width:440px){.site-navbar .cart-button{display:none}.navbar-account{width:38px;min-width:38px;padding:0}.site-navbar .navbar-actions{gap:5px}}

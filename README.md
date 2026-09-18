@@ -15,7 +15,7 @@ npm run dev
 npm run build
 ```
 
-Le site est exporté dans `out/`. Enlever `output: "export"` dans `next.config.ts` pour utiliser à l’avenir les fonctionnalités serveur de Next.js.
+Le site utilise désormais `output: "standalone"` pour les pages `/inscription`, `/connexion` et `/compte`. La connexion passe par les routes serveur `/api/auth/*` et l'API centrale Cobblemine ; le jeton reste dans un cookie HttpOnly/Secure. Voir `deploy/README.md` pour la configuration Docker et le secret de liaison. L'ancien export `out/` n'est plus utilisé.
 
 Les informations du serveur, du Discord et du modpack sont volontairement indiquées « À venir ». Le contenu est dans `src/app/page.tsx` et les styles dans `src/app/globals.css`.
 

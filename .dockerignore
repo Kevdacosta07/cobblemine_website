@@ -8,3 +8,4 @@ out
 *.log
 *.tsbuildinfo
 public/cobblemine-logo-v3.png
+deploy/backups
