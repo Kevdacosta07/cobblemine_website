@@ -296,6 +296,18 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .hero .eyebrow{color:#e6e9ed}
 
 
+.hero-brand-gradient{
+  color:#ff9a24;
+  background:linear-gradient(110deg,#ffd36a 0%,#ff9a24 30%,#ff631e 55%,#ffb832 80%,#ffd36a 100%);
+  background-size:250% 100%;
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:ember-button-flow 7s ease-in-out infinite alternate;
+}
+@media(prefers-reduced-motion:reduce){.hero-brand-gradient{animation:none}}
+@media(forced-colors:active){.hero-brand-gradient{background:none;-webkit-text-fill-color:currentColor}}
+
 /* Minimal hero: one heading, one description, one action. */
 .hero .hero-copy{padding:32px 0 32px 7%;width:52%}
 .hero .hero-copy h1{font-size:clamp(44px,5vw,76px);line-height:1.04;letter-spacing:-.035em;margin:0 0 22px;font-weight:600}

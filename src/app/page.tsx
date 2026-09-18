@@ -13,7 +13,7 @@ export default function Home() {
     <Navbar/>
     <main id="contenu">
       <section className="hero" id="accueil" aria-labelledby="hero-title">
-        <div className="hero-copy"><h1 id="hero-title">Bienvenue sur<br/>Cobblemine.</h1><p className="intro">Votre serveur Minecraft Cobblemon.</p><a className="button" href="#rejoindre">Nous rejoindre <span aria-hidden="true">→</span></a></div>
+        <div className="hero-copy"><h1 id="hero-title">Bienvenue sur<br/><span className="hero-brand-gradient">Cobblemine</span>.</h1><p className="intro">Partez à l’aventure sur Cobblemine.</p><a className="button" href="#rejoindre">Nous rejoindre <span aria-hidden="true">→</span></a></div>
         <PokemonSky/>
         
       </section>
