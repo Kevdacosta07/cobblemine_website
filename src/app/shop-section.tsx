@@ -36,15 +36,15 @@ export default function ShopSection() {
           </button>
         </li>)}
       </ul>
-      <div className="grade-term" role="group" aria-label="Durée du grade">
-        <button aria-pressed={months === 1} onClick={() => setMonths(1)}>1 mois</button>
-        <button aria-pressed={months === 3} onClick={() => setMonths(3)}>3 mois <span>−15 %</span></button>
-      </div>
       <div className="grade-details" id="grade-details" aria-live="polite" aria-atomic="true">
         <div className="grade-summary">
           <p className="grade-detail-label">VOTRE GRADE</p>
           <h3>{grade.name}</h3>
           <p className="grade-description">{grade.description}</p>
+      <div className="grade-term" role="group" aria-label="Durée du grade">
+        <button aria-pressed={months === 1} onClick={() => setMonths(1)}>1 mois</button>
+        <button aria-pressed={months === 3} onClick={() => setMonths(3)}>3 mois <span>−15 %</span></button>
+      </div>
           <div className="grade-price-line"><p className="grade-price">{money(totalCents)}<span> €</span></p>{months === 3 && <del aria-label={`Prix sans réduction : ${money(fullCents)} euros`}>{money(fullCents)} €</del>}</div>
           <p className="grade-duration">Pour {months} mois · Sans renouvellement automatique</p>
           {months === 3 && <p className="grade-saving">Vous économisez {money(fullCents - totalCents)} € sur 3 mois.</p>}
