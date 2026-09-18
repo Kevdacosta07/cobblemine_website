@@ -30,6 +30,7 @@ function PokemonCard({ item }: { item: typeof pokemon[number] }) {
     <div className="exclusive-card-preview">{visible ? <Viewer species={item.id} shiny={shiny} name={item.name}/> : <div className="exclusive-model"/>}</div>
     <div className="exclusive-card-copy"><span className="exclusive-card-edition">ÉDITION NOËL</span><h3>{item.name}</h3><p>{item.type}</p>
       <button className="exclusive-shiny" aria-pressed={shiny} onClick={() => setShiny(!shiny)} aria-label={`Afficher ${item.name} ${shiny ? "original" : "chromatique"}`}>✦ {shiny ? "Chromatique" : "Voir le chromatique"}</button>
+      <a className="exclusive-shop-link" href="#boutique">Aller vers la boutique <span aria-hidden="true">→</span></a>
     </div>
   </article>;
 }
