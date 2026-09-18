@@ -21,13 +21,13 @@ export default function PokemonSky() {
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.setClearColor(0x000000, 0);
       container.appendChild(renderer.domElement);
-      const camera = new THREE.PerspectiveCamera(34,1,0.1,500);
-      camera.position.set(0,17,92);camera.lookAt(0,12,0);
+      const camera = new THREE.PerspectiveCamera(34,1,2,250);
+      camera.position.set(0,20,74);camera.lookAt(0,20,0);
       scene.add(new THREE.HemisphereLight(0xeaf6ff,0x605045,2));
       const sun = new THREE.DirectionalLight(0xfff4e6,2.3);sun.position.set(-30,60,70);scene.add(sun);
       const fill = new THREE.DirectionalLight(0xffb483,2);fill.position.set(40,25,-30);scene.add(fill);
       const loader = new THREE.TextureLoader();
-      const entries = await Promise.all(["pikachu","eevee","charmander"].map(async name => {
+      const entries = await Promise.all(["pikachu"].map(async name => {
         const response = await fetch(`/pokemon/${name}.json`, { signal: abort.signal });
         if (!response.ok) throw new Error("Model unavailable");
         const [data,texture] = await Promise.all([response.json(),loader.loadAsync(`/pokemon/${name}.png`)]);
@@ -49,9 +49,9 @@ export default function PokemonSky() {
       const resize = () => {
         const w=container.clientWidth,h=container.clientHeight;
         renderer!.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();
-        const narrow=w<500;
-        camera.position.z=Math.max(narrow ? 90 : 96, (narrow ? 29 : 35) / (Math.tan(THREE.MathUtils.degToRad(17)) * camera.aspect) + 10);
-        const placements=narrow ? [[0,0,5,.85],[-16,0,2,.92],[16,0,2,.9]] : [[0,0,10,.97],[-18,0,5,1.1],[18,0,5,1.02]];
+
+        camera.position.z=Math.max(74, 20 / (Math.tan(THREE.MathUtils.degToRad(17)) * camera.aspect) + 8);
+        const placements = [[0,0,0,1.4]];
         entries.forEach((m,i)=>{const [x,y,z,s]=placements[i];m.root.position.set(x,y,z);m.root.scale.setScalar(s);m.base=y;});
       };
       const observer=new ResizeObserver(resize);observer.observe(container);resize();
@@ -81,8 +81,9 @@ export default function PokemonSky() {
     start().catch(()=>{if(!disposed)setState("error");});
     return()=>{disposed=true;abort.abort();cancelAnimationFrame(frame);cleanup();renderer?.dispose();renderer?.domElement.remove();};
   },[]);
-  return <div className="pokemon-stage"><div ref={host} className="pokemon-canvas" role="img" aria-label="Pikachu, Évoli et Salamèche en 3D côte à côte, leur tête suit votre souris"/>{state==="loading"&&<p className="scene-status" role="status">Les Pokémon arrivent…</p>}{state==="error"&&<p className="scene-status">La scène 3D n’a pas pu se charger. Essayez un navigateur compatible WebGL.</p>}</div>;
+  return <div className="pokemon-stage"><div ref={host} className="pokemon-canvas" role="img" aria-label="Pikachu en 3D, sa tête suit votre souris"/>{state==="loading"&&<p className="scene-status" role="status">Pikachu arrive…</p>}{state==="error"&&<p className="scene-status">La scène 3D n’a pas pu se charger. Essayez un navigateur compatible WebGL.</p>}</div>;
 }
+
 
 
 

@@ -26,6 +26,8 @@ export function createPokemon(data: Bedrock, texture: THREE.Texture) {
     if (bone.rotation) group.rotation.set(...bone.rotation.map(value => -THREE.MathUtils.degToRad(value)) as Vec, "ZYX");
     (parent ?? root).add(group);
     if (/mouth_open|acting_teeth|eyelid|eyeshine.*2$/.test(bone.name)) group.visible = false;
+    // Separate the eye decals from the head texture, preserving their relative layers.
+    if (bone.name === "eyes") group.position.z -= 0.08;
     for (const cube of bone.cubes ?? []) {
       const [w,h,d] = cube.size, [u,v] = cube.uv;
       const inflation = cube.inflate ?? 0;
@@ -38,6 +40,13 @@ export function createPokemon(data: Bedrock, texture: THREE.Texture) {
         const top = 1-y/th, bottom = 1-(y+height)/th;
         uv.setXY(face*4,left,top);uv.setXY(face*4+1,right,top);uv.setXY(face*4+2,left,bottom);uv.setXY(face*4+3,right,bottom);
       });
+      // Bedrock flat cubes are single double-sided faces, not six overlapping box faces.
+      const flatFace = d === 0 ? 5 : w === 0 ? 0 : h === 0 ? 2 : -1;
+      if (flatFace >= 0) {
+        const indices = geometry.index!;
+        geometry.setIndex(Array.from({length: 6}, (_, i) => indices.getX(flatFace * 6 + i)));
+        geometry.clearGroups();
+      }
       const mesh = new THREE.Mesh(geometry,material);
       mesh.position.set(cube.origin[0]+w/2-bone.pivot[0],cube.origin[1]+h/2-bone.pivot[1],cube.origin[2]+d/2-bone.pivot[2]);
       if (cube.rotation && cube.pivot) {
@@ -50,4 +59,5 @@ export function createPokemon(data: Bedrock, texture: THREE.Texture) {
   const head = bones.get("head_ai") ?? bones.get("head");
   return { root, bones, head, material };
 }
+
 
