@@ -1,0 +1,4 @@
+Original models, textures and animations: Cobblemon contributors.
+Source: installed Cobblemon-fabric-1.8.1+1.21.1.jar, assets/cobblemon/.
+Ten Christmas derivatives for Dinheiro: new attached accessory geometry and extended texture atlases. Original rig and animations retained. Charizard skin palette remapped from orange to icy blue; other original texels preserved. Mewtwo Christmas costume redesigned.
+Original asset license included as LICENSE-Pikachu-original.txt; applies to these derivatives under the same terms.

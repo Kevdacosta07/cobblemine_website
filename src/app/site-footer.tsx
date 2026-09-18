@@ -14,6 +14,7 @@ export default function SiteFooter() {
           <a href="#accueil">Accueil</a>
           <a href="#univers">Événements</a>
           <a href="#boutique">Boutique & grades</a>
+          <a href="#exclusifs">Pokémon exclusifs</a>
           <a href="#rejoindre">Rejoindre le serveur</a>
         </nav>
         <nav className="footer-links" aria-label="Informations utiles">

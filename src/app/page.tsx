@@ -4,6 +4,7 @@ import PokemonSky from "./pokemon-sky";
 import EventsButton from "./events-button";
 import ShopSection from "./shop-section";
 import SiteFooter from "./site-footer";
+import ExclusivesSection from "./exclusives-section";
 const questions = [
   ["Quand ouvrira Cobblemine ?", "La date d’ouverture n’a pas encore été annoncée. Elle sera affichée ici dès qu’elle sera confirmée."],
   ["Comment rejoindre le serveur ?", "L’adresse du serveur et les instructions d’installation seront ajoutées dans la section « Nous rejoindre ». La version de Minecraft et le modpack seront précisés à ce moment-là."],
@@ -31,6 +32,7 @@ export default function Home() {
         </div>
       </section>
       <ShopSection/>
+      <ExclusivesSection/>
       <section className="join" id="rejoindre" aria-labelledby="join-title"><div><p className="eyebrow">LE DÉBUT D’UNE BELLE HISTOIRE</p><h2 id="join-title">Votre prochaine aventure<br/>est en préparation.</h2><p className="join-description">Encore un peu de patience, dresseur. Les informations pour rejoindre Cobblemine seront ajoutées ici dès qu’elles seront prêtes.</p><span className="badge">OUVERTURE À VENIR</span></div><dl className="join-details">{[["↗","Adresse du serveur","Bientôt disponible"],["#","Discord de la communauté","Le lien sera annoncé ici"],["+","Version & modpack","Les détails arrivent bientôt"]].map(([icon,title,text])=><div key={title}><span className="detail-icon" aria-hidden="true">{icon}</span><div><dt>{title}</dt><dd>{text}</dd></div><span className="pending">À venir</span></div>)}</dl></section>
       <section className="section faq" id="faq" aria-labelledby="faq-title"><div><p className="eyebrow">AVANT LE PREMIER PAS</p><h2 id="faq-title">Des questions ?</h2></div><div className="questions">{questions.map(([q,a])=><details name="faq" key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section>
     </main><SiteFooter/>

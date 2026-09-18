@@ -1,0 +1,11 @@
+Pikachu: original model, textures and animation system by the Cobblemon contributors.
+Source: Cobblemon-fabric-1.8.1+1.21.1.jar, assets/cobblemon/; https://gitlab.com/cable-mc/cobblemon
+The original work has been modified: Christmas hat, scarf, bell, atlas extension and event resolver added for Dinheiro.
+Original license preserved in LICENSE-Pikachu-original.txt; derivative asset distributed under those same terms.
+Animations and poser are referenced from the installed Cobblemon mod, not replaced.
+
+Frost revision: added pale blue frost geometry on head, paws and tail; scarf attached to upper torso; bell centered on scarf.
+
+Frost revision: added pale blue frost geometry on head, paws and tail; scarf attached to upper torso; bell centered on scarf.
+
+Frost revision: added pale blue frost geometry on head, paws and tail; scarf attached to upper torso; bell centered on scarf.
