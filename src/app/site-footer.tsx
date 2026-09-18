@@ -32,7 +32,7 @@ export default function SiteFooter() {
         <p>© {new Date().getFullYear()} Cobblemine</p>
         <a href="#accueil" className="footer-top">Retour en haut <span aria-hidden="true">↑</span></a>
       </div>
-      <p className="footer-legal">Projet communautaire indépendant, non affilié à Mojang, Microsoft, Nintendo ou The Pokémon Company. Modèles et textures des Pokémon : <a href="https://cobblemon.com">Cobblemon</a>.</p>
+      <p className="footer-legal">Site web développé par <a href="https://helveit.ch" target="_blank" rel="noopener noreferrer">Helveit</a></p>
     </div>
   </footer>;
 }
