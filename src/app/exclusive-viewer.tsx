@@ -136,7 +136,7 @@ export default function ExclusiveViewer({ species, shiny, name, interactive = tr
     return () => {
       disposed = true; controller.abort(); cancelAnimationFrame(frame); cancelAnimationFrame(rotationFrame); rotationObserver?.disconnect(); observer?.disconnect(); cleanupPointer();
       root?.traverse(object => { if (object instanceof THREE.Mesh) object.geometry.dispose(); });
-      material?.dispose(); texture?.dispose(); renderer?.dispose(); renderer?.domElement.remove();
+      material?.dispose(); texture?.dispose(); renderer?.dispose(); renderer?.forceContextLoss(); renderer?.domElement.remove();
     };
   }, [species, shiny, interactive, autoRotate]);
   return <div className="exclusive-model" tabIndex={interactive ? 0 : undefined} role="img" aria-label={`${name} de Noël en 3D${shiny ? ", variante shiny" : ""}. ${interactive ? "Faites glisser ou utilisez les quatre flèches pour tourner le modèle dans tous les sens. Double-clic ou touche Début pour recentrer." : ""}`}><div className="exclusive-canvas" ref={host} />{status && <p className="exclusive-loading" role="status">{status}</p>}</div>;

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type * as Three from "three";
 
-export default function PokemonSky() {
+function HeroScene() {
   const host = useRef<HTMLDivElement>(null);
   const [state, setState] = useState("loading");
   useEffect(() => {
@@ -48,6 +48,7 @@ export default function PokemonSky() {
       });
       const resize = () => {
         const w=container.clientWidth,h=container.clientHeight;
+        if (!w || !h) return;
         renderer!.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();
 
         camera.position.z=Math.max(74, 20 / (Math.tan(THREE.MathUtils.degToRad(17)) * camera.aspect) + 8);
@@ -79,9 +80,9 @@ export default function PokemonSky() {
       setState("ready");tick();
     }
     start().catch(()=>{if(!disposed)setState("error");});
-    return()=>{disposed=true;abort.abort();cancelAnimationFrame(frame);cleanup();renderer?.dispose();renderer?.domElement.remove();};
+    return()=>{disposed=true;abort.abort();cancelAnimationFrame(frame);cleanup();renderer?.dispose();renderer?.forceContextLoss();renderer?.domElement.remove();};
   },[]);
-  return <div className="pokemon-stage"><div ref={host} className="pokemon-canvas" role="img" aria-label="Pikachu en 3D, sa tête suit votre souris"/>{state==="loading"&&<p className="scene-status" role="status">Pikachu arrive…</p>}{state==="error"&&<p className="scene-status">La scène 3D n’a pas pu se charger. Essayez un navigateur compatible WebGL.</p>}</div>;
+  return <><div ref={host} className="pokemon-canvas" role="img" aria-label="Pikachu en 3D, sa tête suit votre souris"/>{state==="loading"&&<p className="scene-status" role="status">Pikachu arrive…</p>}{state==="error"&&<p className="scene-status">La scène 3D n’a pas pu se charger. Essayez un navigateur compatible WebGL.</p>}</>;
 }
 
 
@@ -89,3 +90,15 @@ export default function PokemonSky() {
 
 
 
+
+// Free the hero GPU context while browsing lower sections. Rebuild it when returning.
+export default function PokemonSky() {
+  const stage = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { rootMargin: "200px" });
+    if (stage.current) observer.observe(stage.current);
+    return () => observer.disconnect();
+  }, []);
+  return <div ref={stage} className="pokemon-stage">{visible && <HeroScene/>}</div>;
+}
