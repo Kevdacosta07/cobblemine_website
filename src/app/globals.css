@@ -526,3 +526,14 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .exclusive-solo-arrow{background:#fff;color:#111;border-color:#fff}
 .exclusive-solo-arrow:hover{background:#f1f1f1;border-color:#f1f1f1}
 .exclusive-solo-arrow[aria-disabled=true]{opacity:1;color:#111;background:#fff}
+
+/* A quiet background connects the showcase to the shop above it. */
+.exclusives-section.exclusive-solo{background:#f4f5f7;color:#27313a}
+.exclusive-solo .exclusive-carousel-heading .shop-label{color:#a75b12}
+.exclusive-solo .exclusive-carousel-heading p:last-child,.exclusive-solo .exclusive-solo-type{color:#687582}
+.exclusive-solo-caption h3{color:#27313a}
+.exclusive-solo-count,.exclusive-solo .exclusive-carousel-bottom{color:#71808d}
+.exclusive-solo-caption .exclusive-shiny{color:#a75b12}
+.exclusive-solo-arrow{box-shadow:0 2px 12px #27313a0b;border-color:#e0e4e8}
+.exclusive-solo-arrow:hover{border-color:#cbd2d9}
+.exclusive-solo-model .exclusive-model:focus-visible,.exclusive-solo-stage:focus-visible,.exclusive-solo-arrow:focus-visible{outline-color:#c97217}
