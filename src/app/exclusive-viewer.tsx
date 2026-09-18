@@ -5,8 +5,10 @@ import * as THREE from "three";
 import restPoses from "./exclusive-rest-poses.json";
 import { createPokemon, type Bedrock } from "./pokemon-model";
 
-export default function ExclusiveViewer({ species, shiny, name, interactive = true }: { species: string; shiny: boolean; name: string; interactive?: boolean }) {
+export default function ExclusiveViewer({ species, shiny, name, interactive = true, onReady }: { species: string; shiny: boolean; name: string; interactive?: boolean; onReady?: () => void }) {
   const host = useRef<HTMLDivElement>(null);
+  const ready = useRef(onReady);
+  ready.current = onReady;
   const [status, setStatus] = useState("Chargement du modèle…");
   useEffect(() => {
     const container = host.current!;
@@ -102,7 +104,8 @@ export default function ExclusiveViewer({ species, shiny, name, interactive = tr
         container.appendChild(renderer.domElement);
         observer = new ResizeObserver(resize); observer.observe(container); resize();
         setStatus("");
-      } catch { if (!disposed) setStatus("L’aperçu 3D est indisponible sur ce navigateur."); }
+        ready.current?.();
+      } catch { if (!disposed) { setStatus("L’aperçu 3D est indisponible sur ce navigateur."); ready.current?.(); } }
     }
     void init();
     return () => {
