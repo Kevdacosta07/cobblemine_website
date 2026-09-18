@@ -38,7 +38,7 @@ export default function ShopSection() {
           <p className="grade-description">{grade.description}</p>
           <p className="grade-price">{grade.price}<span> €</span></p>
           <p className="grade-duration">Paiement unique · Grade permanent</p>
-          <button className="shop-cta" onClick={() => dialog.current?.showModal()}>Choisir {grade.name} <span aria-hidden="true">→</span></button>
+          <button className="shop-cta grade-buy" onClick={() => dialog.current?.showModal()}>Acheter {grade.name} <span aria-hidden="true">→</span></button>
         </div>
         <div className="grade-benefits">
           <h4>Les avantages inclus</h4>
