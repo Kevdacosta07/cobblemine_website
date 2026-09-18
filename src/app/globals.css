@@ -588,3 +588,19 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .exclusive-variant-switch button:disabled{cursor:default;opacity:.6}
 @media(max-height:600px){.exclusive-variant-switch{padding:3px}.exclusive-variant-switch button{min-height:27px;padding:5px 10px}}
 @media(prefers-reduced-motion:reduce){.exclusive-variant-switch button{transition:none}}
+
+/* Dark exclusive collection with quiet surfaces and warm accents. */
+.exclusives-section.exclusive-browser{background:#15181e;color:#f3f4f6}
+.exclusive-browser .exclusive-carousel-heading .shop-label{color:#efb568}
+.exclusive-browser .exclusive-carousel-heading p:last-child,.exclusive-browser .exclusive-carousel-bottom{color:#9fa8b4}
+.exclusive-browser .exclusive-solo-caption h3{color:#f3f4f6}
+.exclusive-browser .exclusive-selection-card{background:#1e232c;border-color:#303742;color:#eef1f5}
+.exclusive-browser .exclusive-selection-card:hover{background:#272d36;border-color:#59616d}
+.exclusive-browser .exclusive-selection-card[aria-pressed=true]{background:#30291f;border-color:#bd883f}
+.exclusive-browser .exclusive-selection-indicator{color:#efb568}
+.exclusive-browser .exclusive-variant-switch{background:#1e232c;border-color:#343b46}
+.exclusive-browser .exclusive-variant-switch button{color:#a7b0bc}
+.exclusive-browser .exclusive-variant-switch button:hover:not(:disabled){background:#303742;color:#fff}
+.exclusive-browser .exclusive-variant-switch button[aria-pressed=true]{background:#414954;color:#fff;box-shadow:0 1px 4px #0003}
+.exclusive-browser .exclusive-variant-switch button[aria-pressed=true] svg{color:#ffc378}
+.exclusive-browser .exclusive-shop-link:focus-visible,.exclusive-browser .exclusive-selection-card:focus-visible,.exclusive-browser .exclusive-variant-switch button:focus-visible,.exclusive-browser .exclusive-model:focus-visible{outline-color:#ffc378}
