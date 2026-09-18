@@ -68,7 +68,7 @@ export default function ExclusivesSection() {
       <div className="exclusive-browser-layout">
       <div className="exclusive-featured">
       <div className="exclusive-solo-stage" id="exclusive-selected" role="region" aria-label="Pokémon sélectionné">
-        <div className={`exclusive-solo-model slide-${phase} direction-${direction > 0 ? "next" : "previous"}`} onAnimationEnd={event => { if (event.target === event.currentTarget) finishAnimation(); }}>{visible ? <Viewer key={item.id} species={item.id} shiny={shiny} name={item.name} onReady={() => setPhase(current => current === "waiting" ? "enter" : current)}/> : <div className="exclusive-model"/>}</div>
+        <div className={`exclusive-solo-model slide-${phase} direction-${direction > 0 ? "next" : "previous"}`} onAnimationEnd={event => { if (event.target === event.currentTarget) finishAnimation(); }}>{visible ? <Viewer key={item.id} autoRotate species={item.id} shiny={shiny} name={item.name} onReady={() => setPhase(current => current === "waiting" ? "enter" : current)}/> : <div className="exclusive-model"/>}</div>
       </div>
       <div className="exclusive-solo-caption">
         <div aria-live="polite" aria-atomic="true"><p className="exclusive-solo-count">{index + 1} / {pokemon.length}</p><h3>{item.name}</h3><TypeBadges types={item.type}/></div>

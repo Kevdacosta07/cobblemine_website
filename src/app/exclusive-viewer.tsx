@@ -5,7 +5,7 @@ import * as THREE from "three";
 import restPoses from "./exclusive-rest-poses.json";
 import { createPokemon, type Bedrock } from "./pokemon-model";
 
-export default function ExclusiveViewer({ species, shiny, name, interactive = true, onReady }: { species: string; shiny: boolean; name: string; interactive?: boolean; onReady?: () => void }) {
+export default function ExclusiveViewer({ species, shiny, name, interactive = true, autoRotate = false, onReady }: { species: string; shiny: boolean; name: string; interactive?: boolean; autoRotate?: boolean; onReady?: () => void }) {
   const host = useRef<HTMLDivElement>(null);
   const ready = useRef(onReady);
   ready.current = onReady;
@@ -14,6 +14,8 @@ export default function ExclusiveViewer({ species, shiny, name, interactive = tr
     const container = host.current!;
     let disposed = false;
     let frame = 0;
+    let rotationFrame = 0;
+    let rotationObserver: IntersectionObserver | undefined;
     let renderer: THREE.WebGLRenderer | undefined;
     let observer: ResizeObserver | undefined;
     let root: THREE.Group | undefined;
@@ -78,7 +80,9 @@ export default function ExclusiveViewer({ species, shiny, name, interactive = tr
         };
         const draw = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(() => { if (!disposed) renderer?.render(scene, camera); }); };
         let activePointer: number | null = null, previousX = 0, previousY = 0;
+        let resumeAt = 0;
         const rotate = (dx: number, dy: number) => {
+          resumeAt = performance.now() + 1800;
           const delta = new THREE.Quaternion().setFromEuler(new THREE.Euler(dy * .009, dx * .009, 0, "XYZ"));
           pivot.quaternion.premultiply(delta).normalize(); draw();
         };
@@ -91,8 +95,8 @@ export default function ExclusiveViewer({ species, shiny, name, interactive = tr
           if (event.pointerId !== activePointer) return;
           rotate(event.clientX - previousX, event.clientY - previousY); previousX = event.clientX; previousY = event.clientY;
         };
-        const up = (event: PointerEvent) => { if (event.pointerId === activePointer) { activePointer = null; if (container.hasPointerCapture(event.pointerId)) container.releasePointerCapture(event.pointerId); } };
-        const reset = () => { pivot.quaternion.identity(); draw(); };
+        const up = (event: PointerEvent) => { if (event.pointerId === activePointer) { activePointer = null; resumeAt = performance.now() + 1800; if (container.hasPointerCapture(event.pointerId)) container.releasePointerCapture(event.pointerId); } };
+        const reset = () => { resumeAt = performance.now() + 1800; pivot.quaternion.identity(); draw(); };
         const key = (event: KeyboardEvent) => {
           const directions: Record<string, [number, number]> = { ArrowLeft: [-20, 0], ArrowRight: [20, 0], ArrowUp: [0, -20], ArrowDown: [0, 20] };
           if (directions[event.key]) { event.preventDefault(); rotate(...directions[event.key]); }
@@ -104,16 +108,36 @@ export default function ExclusiveViewer({ species, shiny, name, interactive = tr
         }
         container.appendChild(renderer.domElement);
         observer = new ResizeObserver(resize); observer.observe(container); resize();
+        if (autoRotate) {
+          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+          let inView = false, previousTime = performance.now();
+          const axis = new THREE.Vector3(0, 1, 0);
+          const spin = new THREE.Quaternion();
+          rotationObserver = new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; });
+          rotationObserver.observe(container);
+          const tick = (now: number) => {
+            if (disposed) return;
+            const elapsed = Math.min((now - previousTime) / 1000, .05);
+            previousTime = now;
+            if (inView && !document.hidden && !reducedMotion.matches && activePointer === null && now >= resumeAt) {
+              spin.setFromAxisAngle(axis, elapsed * .3);
+              pivot.quaternion.premultiply(spin).normalize();
+              renderer?.render(scene, camera);
+            }
+            rotationFrame = requestAnimationFrame(tick);
+          };
+          rotationFrame = requestAnimationFrame(tick);
+        }
         setStatus("");
         ready.current?.();
       } catch { if (!disposed) { setStatus("L’aperçu 3D est indisponible sur ce navigateur."); ready.current?.(); } }
     }
     void init();
     return () => {
-      disposed = true; controller.abort(); cancelAnimationFrame(frame); observer?.disconnect(); cleanupPointer();
+      disposed = true; controller.abort(); cancelAnimationFrame(frame); cancelAnimationFrame(rotationFrame); rotationObserver?.disconnect(); observer?.disconnect(); cleanupPointer();
       root?.traverse(object => { if (object instanceof THREE.Mesh) object.geometry.dispose(); });
       material?.dispose(); texture?.dispose(); renderer?.dispose(); renderer?.domElement.remove();
     };
-  }, [species, shiny, interactive]);
+  }, [species, shiny, interactive, autoRotate]);
   return <div className="exclusive-model" tabIndex={interactive ? 0 : undefined} role="img" aria-label={`${name} de Noël en 3D${shiny ? ", variante chromatique" : ""}. ${interactive ? "Faites glisser ou utilisez les quatre flèches pour tourner le modèle dans tous les sens. Double-clic ou touche Début pour recentrer." : ""}`}><div className="exclusive-canvas" ref={host} />{status && <p className="exclusive-loading" role="status">{status}</p>}</div>;
 }
