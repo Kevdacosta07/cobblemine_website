@@ -3,11 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { createHmac } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { isIP } from "node:net";
+import { isAllowedOrigin } from "./origin-policy";
 
 const secure = process.env.NODE_ENV === "production";
 const cookieName = secure ? "__Host-cobblemine_session" : "cobblemine_session";
 const apiBase = process.env.COBBLEMINE_API_URL || "https://api.cobblemine.com";
-const origins = (process.env.SITE_ORIGINS || "https://cobblemine.com,https://cobblemine.fr,http://localhost:3012").split(",");
+const origins = (process.env.SITE_ORIGINS || "https://cobblemine.com,https://cobblemine.fr").split(",").map(origin => origin.trim());
 
 export class RequestError extends Error {
   constructor(public status: number, message: string) { super(message); }
@@ -17,8 +18,8 @@ export function json(data: unknown, status = 200) {
 }
 export function checkOrigin(request: NextRequest) {
   const origin = request.headers.get("origin");
-  if (!origin || !origins.includes(origin) || new URL(origin).host !== request.headers.get("host"))
-    throw new RequestError(403,"Cette demande ne peut pas être validée. Rechargez la page.");
+  if (!isAllowedOrigin(origin, request.headers.get("host"), origins, process.env.NODE_ENV === "development"))
+    throw new RequestError(403,"Cette adresse n’est pas autorisée pour la connexion. Utilisez l’adresse habituelle du site.");
 }
 export async function readBody(request: NextRequest) {
   if (!request.headers.get("content-type")?.startsWith("application/json")) throw new RequestError(415,"Format de demande incorrect.");

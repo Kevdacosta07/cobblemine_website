@@ -29,3 +29,5 @@ Le serveur contacte `https://api.cobblemine.com` avec validation TLS. Nginx remp
 `COBBLEMINE_API_URL`, `SITE_ORIGINS` et `WEB_PROXY_SECRET_FILE` sont définis dans compose.yaml. Le secret `/home/docker/cobblemine_api/secrets/web_proxy`, généré par le prepare.sh de l'API, est monté en lecture seule dans les deux conteneurs. Avant ce déploiement, mettre à jour l'API avec la vérification des signatures du site.
 
 L'ancien export statique et deploy/nginx.conf ne sont plus utilisés. Les achats et la récupération de mot de passe oublié restent indisponibles. Le launcher et les mods doivent encore être raccordés.
+
+En développement (`npm run dev`), les adresses localhost, 127.0.0.1 et ::1 sont autorisées sur le port effectivement utilisé, à condition que l'origine corresponde exactement au Host de la demande. Les origines locales ne sont pas autorisées implicitement en production. Le site local appelle l'API HTTPS centrale, sans accès direct à PostgreSQL. Tests du contrôle d'origine : `node --experimental-strip-types --test test/origin-policy.test.mjs`.
