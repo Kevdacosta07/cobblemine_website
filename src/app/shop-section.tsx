@@ -18,7 +18,7 @@ export default function ShopSection() {
   const grade = grades[selected];
   const monthlyCents = Math.round(Number(grade.price.replace(",", ".")) * 100);
   const fullCents = monthlyCents * months;
-  const totalCents = months === 3 ? Math.round(fullCents * 0.85) : fullCents;
+  const totalCents = months === 3 ? Math.round(fullCents * 0.80) : fullCents;
   const money = (cents: number) => (cents / 100).toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   return <section className="shop-section" id="boutique" aria-labelledby="shop-title">
     <div className="shop-inner">
@@ -43,7 +43,7 @@ export default function ShopSection() {
           <p className="grade-description">{grade.description}</p>
       <div className="grade-term" role="group" aria-label="Durée du grade">
         <button aria-pressed={months === 1} onClick={() => setMonths(1)}>1 mois</button>
-        <button aria-pressed={months === 3} onClick={() => setMonths(3)}>3 mois <span>−15 %</span></button>
+        <button aria-pressed={months === 3} onClick={() => setMonths(3)}>3 mois <span>−20 %</span></button>
       </div>
           <div className="grade-price-line"><p className="grade-price">{money(totalCents)}<span> €</span></p>{months === 3 && <del aria-label={`Prix sans réduction : ${money(fullCents)} euros`}>{money(fullCents)} €</del>}</div>
           <p className="grade-duration">Pour {months} mois · Sans renouvellement automatique</p>
@@ -60,7 +60,7 @@ export default function ShopSection() {
     <dialog className="navbar-dialog" ref={dialog} aria-labelledby="shop-dialog-title" onClick={event => { if (event.target === dialog.current) dialog.current.close(); }}>
       <button className="dialog-close" aria-label="Fermer" onClick={() => dialog.current?.close()}>✕</button>
       <h2 id="shop-dialog-title">Grade {grade.name} · {months} mois</h2>
-      <p>{money(totalCents)} € pour {months} mois{months === 3 ? " (réduction de 15 % incluse)" : ""}.</p>
+      <p>{money(totalCents)} € pour {months} mois{months === 3 ? " (réduction de 20 % incluse)" : ""}.</p>
       <p>Cette offre est une présentation provisoire. Les achats ne sont pas encore ouverts ; les tarifs et avantages définitifs seront annoncés au lancement de la boutique.</p>
       <button className="events-button" onClick={() => dialog.current?.close()}>Compris</button>
     </dialog>
