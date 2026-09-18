@@ -259,7 +259,8 @@ html{scroll-padding-top:145px}
 @media(max-height:580px) and (min-width:701px){.hero{min-height:440px}}
 
 
-/* Minecraft sunset backdrop, shaded for readable foreground content. */
-.hero{background-color:#09090c;background-image:linear-gradient(90deg,rgba(9,9,12,.78) 0%,rgba(9,9,12,.48) 45%,rgba(9,9,12,.15) 100%),linear-gradient(0deg,rgba(9,9,12,.65),transparent 50%),url("/minecraft-sunset.png");background-size:cover;background-position:center}
-@media(max-width:700px){.hero{background-position:65% center;background-image:linear-gradient(180deg,rgba(9,9,12,.7),rgba(9,9,12,.35)),url("/minecraft-sunset.png")}}
+/* User-selected Minecraft adventure backdrop, shaded for readable foreground content. */
+.hero{background-color:#09090c;background-image:linear-gradient(90deg,rgba(9,9,12,.78) 0%,rgba(9,9,12,.48) 45%,rgba(9,9,12,.15) 100%),linear-gradient(0deg,rgba(9,9,12,.65),transparent 50%),url("/minecraft-adventure.png");background-size:cover;background-position:center}
+@media(max-width:700px){.hero{background-position:65% center;background-image:linear-gradient(180deg,rgba(9,9,12,.7),rgba(9,9,12,.35)),url("/minecraft-adventure.png")}}
+
 
