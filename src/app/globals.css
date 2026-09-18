@@ -329,3 +329,23 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .hero .hero-copy .button{font-family:var(--font-body),sans-serif;font-size:14px;font-weight:600;padding:13px 20px;border-radius:7px;gap:22px;min-height:48px;text-transform:none;letter-spacing:0}
 @media(max-width:700px){.hero .hero-copy{width:100%;padding:38px 7% 14px}.hero .hero-copy h1{font-size:40px;margin-bottom:16px}.hero .hero-copy .intro{font-size:14px;margin-bottom:22px}.hero .hero-copy .button{padding:11px 17px;min-height:44px}}
 
+.shop-section{padding:8px 5.5% 88px;background:#fff}
+.shop-inner{max-width:1120px;margin:0 auto}
+.shop-heading{text-align:center;max-width:640px;margin:0 auto 38px}
+.shop-label{font-size:11px;font-weight:700;letter-spacing:2px;color:#9b4b13;margin-bottom:14px}
+.shop-heading h2{font-size:clamp(34px,3.5vw,48px);letter-spacing:-1px;margin-bottom:16px}
+.shop-heading>p:last-child{font-size:15px;line-height:1.7;color:#6c737b;margin:0}
+.grade-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.grade-card{text-align:center;border:1px solid #e7e9ec;border-radius:14px;background:#fafbfc;padding:24px 10px 22px}
+.grade-art{height:166px;display:flex;align-items:center;justify-content:center}
+.grade-art img{width:145px;height:145px;object-fit:contain;transition:transform .25s ease;filter:drop-shadow(0 8px 8px #27313a14)}
+.grade-card:hover .grade-art img{transform:translateY(-5px)}
+.grade-card h3{font-size:24px;line-height:1.2;margin:20px 0 0;color:#27313a}
+.grade-legende{background:#fffbf2;border-color:#efdec0}
+.shop-action{text-align:center;margin-top:34px}
+.shop-cta{display:inline-flex;align-items:center;justify-content:center;gap:28px;min-height:48px;padding:13px 23px;border-radius:7px;border:1px solid #27313a;background:#27313a;color:#fff;font:600 14px var(--font-body),sans-serif;cursor:pointer;transition:background .18s}
+.shop-cta:hover{background:#414d58}
+.shop-action p{font-size:12px;color:#747b83;margin:18px 0 0}
+@media(max-width:900px){.grade-grid{gap:10px}.grade-art{height:130px}.grade-art img{width:115px;height:115px}.grade-card h3{font-size:21px}}
+@media(max-width:600px){.shop-section{padding:12px 5.5% 52px}.shop-heading{margin-bottom:28px}.grade-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.grade-card{padding:18px 10px}.grade-card:last-child{grid-column:1/-1;width:calc(50% - 6px);justify-self:center}.grade-card h3{margin-top:10px}.shop-action p{max-width:270px;margin:18px auto 0}}
+@media(prefers-reduced-motion:reduce){.grade-card:hover .grade-art img{transform:none}}
