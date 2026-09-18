@@ -13,8 +13,13 @@ const grades = [
 
 export default function ShopSection() {
   const [selected, setSelected] = useState(0);
+  const [months, setMonths] = useState<1 | 3>(1);
   const dialog = useRef<HTMLDialogElement>(null);
   const grade = grades[selected];
+  const monthlyCents = Math.round(Number(grade.price.replace(",", ".")) * 100);
+  const fullCents = monthlyCents * months;
+  const totalCents = months === 3 ? Math.round(fullCents * 0.85) : fullCents;
+  const money = (cents: number) => (cents / 100).toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   return <section className="shop-section" id="boutique" aria-labelledby="shop-title">
     <div className="shop-inner">
       <div className="shop-heading">
@@ -27,17 +32,22 @@ export default function ShopSection() {
           <button className="grade-select" aria-pressed={selected === index} aria-controls="grade-details" onClick={() => setSelected(index)}>
             <span className="grade-art"><Image src={`/grades/${item.asset}.webp`} alt="" width={320} height={320} sizes="(max-width: 600px) 120px, 160px" /></span>
             <span className="grade-name">{item.name}</span>
-            <span className="grade-card-price">{item.price} €</span>
+            <span className="grade-card-price">{item.price} € / mois</span>
           </button>
         </li>)}
       </ul>
+      <div className="grade-term" role="group" aria-label="Durée du grade">
+        <button aria-pressed={months === 1} onClick={() => setMonths(1)}>1 mois</button>
+        <button aria-pressed={months === 3} onClick={() => setMonths(3)}>3 mois <span>−15 %</span></button>
+      </div>
       <div className="grade-details" id="grade-details" aria-live="polite" aria-atomic="true">
         <div className="grade-summary">
           <p className="grade-detail-label">VOTRE GRADE</p>
           <h3>{grade.name}</h3>
           <p className="grade-description">{grade.description}</p>
-          <p className="grade-price">{grade.price}<span> €</span></p>
-          <p className="grade-duration">Paiement unique · Grade permanent</p>
+          <div className="grade-price-line"><p className="grade-price">{money(totalCents)}<span> €</span></p>{months === 3 && <del aria-label={`Prix sans réduction : ${money(fullCents)} euros`}>{money(fullCents)} €</del>}</div>
+          <p className="grade-duration">Pour {months} mois · Sans renouvellement automatique</p>
+          {months === 3 && <p className="grade-saving">Vous économisez {money(fullCents - totalCents)} € sur 3 mois.</p>}
           <button className="shop-cta grade-buy" onClick={() => dialog.current?.showModal()}>Acheter {grade.name} <span aria-hidden="true">→</span></button>
         </div>
         <div className="grade-benefits">
@@ -49,7 +59,8 @@ export default function ShopSection() {
     </div>
     <dialog className="navbar-dialog" ref={dialog} aria-labelledby="shop-dialog-title" onClick={event => { if (event.target === dialog.current) dialog.current.close(); }}>
       <button className="dialog-close" aria-label="Fermer" onClick={() => dialog.current?.close()}>✕</button>
-      <h2 id="shop-dialog-title">Grade {grade.name}</h2>
+      <h2 id="shop-dialog-title">Grade {grade.name} · {months} mois</h2>
+      <p>{money(totalCents)} € pour {months} mois{months === 3 ? " (réduction de 15 % incluse)" : ""}.</p>
       <p>Cette offre est une présentation provisoire. Les achats ne sont pas encore ouverts ; les tarifs et avantages définitifs seront annoncés au lancement de la boutique.</p>
       <button className="events-button" onClick={() => dialog.current?.close()}>Compris</button>
     </dialog>
