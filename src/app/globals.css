@@ -349,3 +349,25 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 @media(max-width:900px){.grade-grid{gap:10px}.grade-art{height:130px}.grade-art img{width:115px;height:115px}.grade-card h3{font-size:21px}}
 @media(max-width:600px){.shop-section{padding:12px 5.5% 52px}.shop-heading{margin-bottom:28px}.grade-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.grade-card{padding:18px 10px}.grade-card:last-child{grid-column:1/-1;width:calc(50% - 6px);justify-self:center}.grade-card h3{margin-top:10px}.shop-action p{max-width:270px;margin:18px auto 0}}
 @media(prefers-reduced-motion:reduce){.grade-card:hover .grade-art img{transform:none}}
+/* Grade selector and inline offer details. */
+.grade-grid .grade-card{padding:0;overflow:hidden;transition:border-color .18s,background .18s}
+.grade-grid .grade-card.is-selected{border-color:#ed8b29;background:#fff8ee;box-shadow:inset 0 0 0 1px #ed8b29}
+.grade-select{display:block;width:100%;height:100%;padding:24px 10px 20px;background:none;border:0;color:inherit;font:inherit;cursor:pointer;border-radius:13px}
+.grade-select:focus-visible{outline:3px solid #a94b0a;outline-offset:-5px}
+.grade-name{display:block;font:700 24px/1.2 var(--font-heading),sans-serif;margin-top:20px}
+.grade-card-price{display:block;font-size:13px;color:#6c737b;margin-top:8px}
+.grade-details{display:grid;grid-template-columns:1fr 1.4fr;gap:50px;margin-top:24px;padding:36px 40px;border:1px solid #e7e9ec;border-radius:14px;background:#fafbfc}
+.grade-detail-label{font-size:10px;font-weight:700;letter-spacing:1.8px;color:#7c8289;margin:0 0 8px}
+.grade-summary h3{font-size:34px;line-height:1.15;margin:0 0 12px}
+.grade-description{font-size:14px;color:#6c737b;line-height:1.7;max-width:310px;margin:0 0 22px}
+.grade-price{font:700 42px/1 var(--font-heading),sans-serif;margin:0 0 8px;color:#27313a}
+.grade-price>span{font-size:26px}
+.grade-duration{font-size:12px;color:#747b83;margin:0 0 22px}
+.grade-benefits{border-left:1px solid #e1e5e9;padding-left:40px;align-self:stretch}
+.grade-benefits h4{font-size:14px;font-weight:600;margin:2px 0 20px}
+.grade-benefits ul{padding:0;margin:0;list-style:none;display:grid;gap:16px}
+.grade-benefits li{display:flex;align-items:baseline;gap:12px;font-size:14px;line-height:1.5;color:#535c64}
+.grade-benefits li>span{color:#b55d13;font-weight:700}
+.shop-preview-note{text-align:center;color:#7c8289;font-size:11px;line-height:1.6;margin:20px 0 0}
+@media(max-width:900px){.grade-name{font-size:21px}.grade-details{gap:28px;padding:30px}.grade-benefits{padding-left:28px}}
+@media(max-width:600px){.grade-select{padding:18px 10px}.grade-name{margin-top:10px}.grade-details{grid-template-columns:1fr;gap:28px;padding:26px 22px}.grade-benefits{border-left:0;border-top:1px solid #e1e5e9;padding:24px 0 0}.grade-description{max-width:none}.grade-summary .shop-cta{width:100%}}
