@@ -608,3 +608,16 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .exclusives-section.exclusive-browser{background:linear-gradient(180deg,#090f1940,#090f191a 50%,#090f1966),url('/exclusives-christmas-night.png') center/cover}
 .exclusive-browser .exclusive-selection-card{background:#1b222de8;backdrop-filter:blur(8px)}
 .exclusive-browser .exclusive-selection-card[aria-pressed=true]{background:#30291ff2}
+
+/* Sparse snow in front of the scenery, behind every interactive element. */
+.exclusives-section.exclusive-browser{position:relative;isolation:isolate}
+.exclusive-browser .exclusives-inner{position:relative;z-index:1}
+.exclusive-snow{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;contain:strict}
+.snow-particle{position:absolute;top:-16px;border-radius:50%;background:#eff7ff;box-shadow:0 0 7px #d9eeff30;animation:exclusive-snowfall linear infinite;will-change:transform}
+.snow-particle:nth-child(3n){filter:blur(.6px)}
+.snow-spark{background:#ffdfac;box-shadow:0 0 9px #ffd38b70;border-radius:1px}
+.snow-spark::before,.snow-spark::after{content:"";position:absolute;inset:50% auto auto 50%;background:#fff2d4;transform:translate(-50%,-50%);border-radius:50%}
+.snow-spark::before{width:1px;height:9px}.snow-spark::after{width:9px;height:1px}
+@keyframes exclusive-snowfall{0%{transform:translate3d(-16px,-12px,0) rotate(0deg)}50%{transform:translate3d(18px,50svh,0) rotate(70deg)}100%{transform:translate3d(-8px,calc(100svh + 24px),0) rotate(140deg)}}
+@media(max-width:700px){.snow-particle:nth-child(2n){display:none}}
+@media(prefers-reduced-motion:reduce){.exclusive-snow{display:none}}

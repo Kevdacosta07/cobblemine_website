@@ -63,6 +63,9 @@ export default function ExclusivesSection() {
     } else if (phase === "enter") setPhase("idle");
   }
   return <section ref={section} className="exclusives-section exclusive-carousel-section exclusive-solo exclusive-browser" id="exclusifs" aria-labelledby="exclusives-title">
+    <div className="exclusive-snow" aria-hidden="true">
+      {Array.from({ length: 30 }, (_, i) => <span key={i} className={i % 7 === 0 ? "snow-particle snow-spark" : "snow-particle"} style={{ left: `${(i * 37 + 11) % 100}%`, width: `${i % 3 + 2}px`, height: `${i % 3 + 2}px`, animationDuration: `${14 + i % 9 * 2}s`, animationDelay: `${-i * 1.7}s`, opacity: .15 + i % 4 * .1 }}/>) }
+    </div>
     <div className="exclusives-inner">
       <div className="exclusive-carousel-heading"><div><p className="shop-label">COLLECTION DE NOËL · 11 POKÉMON</p><h2 id="exclusives-title">Des rencontres exclusives.</h2><p>Vos Pokémon préférés, dans des versions créées pour le serveur.</p></div></div>
       <div className="exclusive-browser-layout">
