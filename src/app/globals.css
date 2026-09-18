@@ -559,3 +559,22 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .exclusive-browser .exclusive-carousel-bottom{margin-top:14px}
 @media(max-width:700px){.exclusive-browser-layout{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) 142px;gap:16px}.exclusive-browser .exclusive-carousel-heading{margin-bottom:10px}.exclusive-selection{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:7px;padding-right:5px}.exclusive-selection-card{min-height:64px;gap:6px;padding:5px}.exclusive-list-thumbnail{width:48px;height:52px}.exclusive-selection-copy strong{font-size:18px}.exclusive-selection-copy>span{font-size:10px}.exclusive-selection-indicator{display:none}.exclusive-browser .exclusive-solo-caption h3{font-size:27px}.exclusive-browser .exclusive-solo-type{display:none}.exclusive-browser .exclusive-carousel-bottom{display:none}.exclusive-browser .exclusive-solo-caption .exclusive-shop-link{padding:8px 12px;margin-top:5px}}
 @media(max-width:700px) and (max-height:600px){.exclusive-browser-layout{grid-template-rows:minmax(0,1fr) 75px}.exclusive-browser .exclusive-carousel-heading h2{font-size:22px}}
+
+.pokemon-type-badges{display:inline-flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:5px}
+.pokemon-type-badge{display:inline-flex;align-items:center;border-radius:6px;padding:4px 8px;font:600 11px/1.2 var(--font-body),sans-serif;white-space:nowrap;background:#eceef0;color:#535e68}
+.pokemon-type-badge[data-type="Électrik"]{background:#fff0b5;color:#795800}
+.pokemon-type-badge[data-type="Feu"]{background:#ffe5d7;color:#a4380e}
+.pokemon-type-badge[data-type="Vol"]{background:#e9e6ff;color:#625096}
+.pokemon-type-badge[data-type="Plante"]{background:#e1f1d7;color:#3e6a26}
+.pokemon-type-badge[data-type="Poison"]{background:#f0dff3;color:#83408d}
+.pokemon-type-badge[data-type="Eau"]{background:#dcecff;color:#2c6098}
+.pokemon-type-badge[data-type="Spectre"]{background:#e8e0f4;color:#654986}
+.pokemon-type-badge[data-type="Fée"]{background:#fce0ed;color:#9b4770}
+.pokemon-type-badge[data-type="Combat"]{background:#f5dfda;color:#944437}
+.pokemon-type-badge[data-type="Acier"]{background:#e1e9ed;color:#46616e}
+.pokemon-type-badge[data-type="Psy"]{background:#fbdde7;color:#a83c62}
+.exclusive-solo-caption .pokemon-type-badges{margin:4px 0 8px}
+.exclusive-selection-card>.pokemon-type-badges{justify-content:flex-end;max-width:112px;flex-shrink:0}
+.exclusive-selection-card{gap:10px}
+.exclusive-selection-card .exclusive-selection-indicator{display:none}
+@media(max-width:700px){.exclusive-selection-card{flex-wrap:wrap;gap:3px 6px}.exclusive-selection-card>.pokemon-type-badges{max-width:none;width:100%;justify-content:flex-start;padding-left:5px}.exclusive-selection-card .pokemon-type-badge{font-size:9px;padding:3px 5px}.exclusive-solo-caption .pokemon-type-badges{margin:2px 0 4px}}

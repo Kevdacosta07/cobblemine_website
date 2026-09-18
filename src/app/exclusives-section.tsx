@@ -17,6 +17,10 @@ const pokemon = [
   { id: "snorlax", name: "Ronflex", type: "Normal" },
 ];
 
+function TypeBadges({ types }: { types: string }) {
+  return <span className="pokemon-type-badges">{types.split(" · ").map(type => <span key={type} className="pokemon-type-badge" data-type={type}>{type}</span>)}</span>;
+}
+
 function PokemonThumbnail({ item }: { item: typeof pokemon[number] }) {
   const host = useRef<HTMLSpanElement>(null);
   const [shown, setShown] = useState(false);
@@ -67,7 +71,7 @@ export default function ExclusivesSection() {
         <div className={`exclusive-solo-model slide-${phase} direction-${direction > 0 ? "next" : "previous"}`} onAnimationEnd={event => { if (event.target === event.currentTarget) finishAnimation(); }}>{visible ? <Viewer key={item.id} species={item.id} shiny={shiny} name={item.name} onReady={() => setPhase(current => current === "waiting" ? "enter" : current)}/> : <div className="exclusive-model"/>}</div>
       </div>
       <div className="exclusive-solo-caption">
-        <div aria-live="polite" aria-atomic="true"><p className="exclusive-solo-count">{index + 1} / {pokemon.length}</p><h3>{item.name}</h3><p className="exclusive-solo-type">{item.type}</p></div>
+        <div aria-live="polite" aria-atomic="true"><p className="exclusive-solo-count">{index + 1} / {pokemon.length}</p><h3>{item.name}</h3><TypeBadges types={item.type}/></div>
         <button className="exclusive-shiny" disabled={phase !== "idle"} aria-pressed={shiny} onClick={() => setShiny(!shiny)} aria-label={`Afficher ${item.name} ${shiny ? "original" : "chromatique"}`}>✦ {shiny ? "Chromatique" : "Voir le chromatique"}</button>
         <a className="exclusive-shop-link" href="#boutique">Aller vers la boutique <span aria-hidden="true">→</span></a>
       </div>
@@ -75,7 +79,8 @@ export default function ExclusivesSection() {
       <div className="exclusive-selection" role="group" aria-label="Choisir un Pokémon">
         {pokemon.map((entry, position) => <button key={entry.id} className="exclusive-selection-card" aria-pressed={position === index} aria-controls="exclusive-selected" aria-disabled={phase !== "idle"} onClick={() => select(position)}>
           <PokemonThumbnail item={entry}/>
-          <span className="exclusive-selection-copy"><strong>{entry.name}</strong><span>{entry.type}</span></span>
+          <span className="exclusive-selection-copy"><strong>{entry.name}</strong></span>
+          <TypeBadges types={entry.type}/>
           <span className="exclusive-selection-indicator" aria-hidden="true">{position === index ? "✓" : "→"}</span>
         </button>)}
       </div>
