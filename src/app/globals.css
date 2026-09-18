@@ -469,5 +469,5 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .exclusive-card-preview .exclusive-model:active{cursor:grabbing}
 .exclusive-card-preview .exclusive-model:focus-visible{outline:2px solid #f5a623;outline-offset:-4px;border-radius:16px}
 
-.exclusive-shop-link{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;margin-top:22px;padding:14px 16px;border-radius:9px;font-size:13px;font-weight:700;text-decoration:none;line-height:1.4}
+.exclusive-shop-link{display:flex;align-items:center;justify-content:center;gap:12px;width:fit-content;max-width:100%;margin-top:22px;padding:14px 16px;border-radius:9px;font-size:13px;font-weight:700;text-decoration:none;line-height:1.4}
 .exclusive-shop-link:focus-visible{outline:2px solid #27313a;outline-offset:5px}
