@@ -1,7 +1,7 @@
 # Cobblemine sur le VPS
 
 Projet : `/home/docker/cobblemine_website`.
-Domaine : `cobblemine.com` (enregistrement A vers `37.59.111.15`).
+Domaines : `cobblemine.com` et `cobblemine.fr` (enregistrement A vers `37.59.111.15`).
 Réseau externe existant : `nginx-proxy`.
 
 Le conteneur sert l’export statique Next.js sur son port interne 80.
