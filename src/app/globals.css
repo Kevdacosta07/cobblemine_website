@@ -528,7 +528,7 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .exclusive-solo-arrow[aria-disabled=true]{opacity:1;color:#111;background:#fff}
 
 /* A quiet background connects the showcase to the shop above it. */
-.exclusives-section.exclusive-solo{background:#f4f5f7;color:#27313a}
+.exclusives-section.exclusive-solo{background:#fff;color:#27313a}
 .exclusive-solo .exclusive-carousel-heading .shop-label{color:#a75b12}
 .exclusive-solo .exclusive-carousel-heading p:last-child,.exclusive-solo .exclusive-solo-type{color:#687582}
 .exclusive-solo-caption h3{color:#27313a}
