@@ -72,7 +72,10 @@ export default function ExclusivesSection() {
       </div>
       <div className="exclusive-solo-caption">
         <div aria-live="polite" aria-atomic="true"><p className="exclusive-solo-count">{index + 1} / {pokemon.length}</p><h3>{item.name}</h3><TypeBadges types={item.type}/></div>
-        <button className="exclusive-shiny" disabled={phase !== "idle"} aria-pressed={shiny} onClick={() => setShiny(!shiny)} aria-label={`Afficher ${item.name} ${shiny ? "original" : "chromatique"}`}>✦ {shiny ? "Chromatique" : "Voir le chromatique"}</button>
+        <div className="exclusive-variant-switch" role="group" aria-label={`Apparence de ${item.name}`}>
+          <button type="button" disabled={phase !== "idle"} aria-pressed={!shiny} onClick={() => setShiny(false)}>Original</button>
+          <button type="button" disabled={phase !== "idle"} aria-pressed={shiny} onClick={() => setShiny(true)}><svg aria-hidden="true" width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="m10 2 2.2 5.8L18 10l-5.8 2.2L10 18l-2.2-5.8L2 10l5.8-2.2L10 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>Chromatique</button>
+        </div>
         <a className="exclusive-shop-link" href="#boutique">Aller vers la boutique <span aria-hidden="true">→</span></a>
       </div>
       </div>

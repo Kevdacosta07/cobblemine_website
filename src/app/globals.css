@@ -578,3 +578,13 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .exclusive-selection-card{gap:10px}
 .exclusive-selection-card .exclusive-selection-indicator{display:none}
 @media(max-width:700px){.exclusive-selection-card{flex-wrap:wrap;gap:3px 6px}.exclusive-selection-card>.pokemon-type-badges{max-width:none;width:100%;justify-content:flex-start;padding-left:5px}.exclusive-selection-card .pokemon-type-badge{font-size:9px;padding:3px 5px}.exclusive-solo-caption .pokemon-type-badges{margin:2px 0 4px}}
+
+.exclusive-variant-switch{display:flex;align-items:center;width:fit-content;gap:3px;margin:3px auto 0;padding:4px;border:1px solid #e4e7eb;border-radius:10px;background:#f4f5f7}
+.exclusive-variant-switch button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:32px;padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#77818a;font:500 12px/1.2 var(--font-body),sans-serif;cursor:pointer;transition:background .18s,color .18s,box-shadow .18s}
+.exclusive-variant-switch button:hover:not(:disabled){color:#27313a;background:#e9ecf0}
+.exclusive-variant-switch button[aria-pressed=true]{color:#27313a;background:#fff;box-shadow:0 1px 4px #27313a15;font-weight:600}
+.exclusive-variant-switch button[aria-pressed=true] svg{color:#b7781e}
+.exclusive-variant-switch button:focus-visible{outline:2px solid #c97217;outline-offset:2px}
+.exclusive-variant-switch button:disabled{cursor:default;opacity:.6}
+@media(max-height:600px){.exclusive-variant-switch{padding:3px}.exclusive-variant-switch button{min-height:27px;padding:5px 10px}}
+@media(prefers-reduced-motion:reduce){.exclusive-variant-switch button{transition:none}}
