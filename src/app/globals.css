@@ -621,3 +621,8 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 @keyframes exclusive-snowfall{0%{transform:translate3d(-16px,-12px,0) rotate(0deg)}50%{transform:translate3d(18px,50svh,0) rotate(70deg)}100%{transform:translate3d(-8px,calc(100svh + 24px),0) rotate(140deg)}}
 @media(max-width:700px){.snow-particle:nth-child(2n){display:none}}
 @media(prefers-reduced-motion:reduce){.exclusive-snow{display:none}}
+
+.exclusive-snow .snow-particle{box-shadow:0 0 9px #d9eeff75}
+.exclusive-snow .snow-spark{box-shadow:0 0 14px #ffd38baa}
+.exclusive-snow .snow-spark::before{height:12px}.exclusive-snow .snow-spark::after{width:12px}
+@media(max-width:700px){.exclusive-snow .snow-particle:nth-child(2n){display:block}.exclusive-snow .snow-particle:nth-child(3n){display:none}}
