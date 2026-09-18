@@ -71,6 +71,7 @@ export default function ExclusiveViewer({ species, shiny, name, interactive = tr
           const radius = size.length() / 2;
           const halfFov = Math.min(THREE.MathUtils.degToRad(16), Math.atan(Math.tan(THREE.MathUtils.degToRad(16)) * camera.aspect));
           const distance = radius / Math.sin(halfFov) * 1.04;
+          camera.zoom = species === "charizard" ? 1.22 : 1;
           camera.position.set(0, size.y * .045, distance);
           camera.lookAt(0, 0, 0); camera.updateProjectionMatrix();
           renderer.render(scene, camera);
