@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
+import {gradePresentation} from "@/lib/grades";
 
 const grades = [
   { name: "Dresseur", asset: "dresseur", image: "super-ball.png", price: "4,99", description: "Une première touche personnelle pour votre aventure.", benefits: ["Préfixe Dresseur dans le chat", "3 emplacements de maison /home", "2 styles de particules discrets", "Un kit de décoration de bienvenue", "Rôle Dresseur sur Discord", "Accès aux annonces réservées aux soutiens"] },
@@ -30,7 +31,7 @@ export default function ShopSection() {
       <ul className="grade-grid">
         {grades.map((item, index) => <li className={`grade-card grade-${item.asset}${selected === index ? " is-selected" : ""}`} key={item.asset}>
           <button className="grade-select" aria-pressed={selected === index} aria-controls="grade-details" onClick={() => setSelected(index)}>
-            <span className="grade-art"><Image src={`/grades/${item.image}`} alt="" width={320} height={320} sizes="(max-width: 600px) 120px, 160px" /></span>
+            <span className="grade-art"><Image src={`/grades/${gradePresentation[item.asset].image}`} alt="" width={320} height={320} sizes="(max-width: 600px) 120px, 160px" /></span>
             <span className="grade-name">{item.name}</span>
             <span className="grade-card-price">{item.price} € / mois</span>
           </button>

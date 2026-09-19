@@ -4,14 +4,17 @@ import {useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type {Account} from "@/lib/account";
+import {gradePresentation} from "@/lib/grades";
 import MemberInformation from "./member-information";
 
 function Icon({name}:{name:string}) {return <span className="member-icon" aria-hidden="true" style={{maskImage:`url(/member-assets/icons/${name}.svg)`,WebkitMaskImage:`url(/member-assets/icons/${name}.svg)`}}/>;}
 
 export default function MemberDashboard({account,error,busy,onLogout}:{account:Account;error:string;busy:boolean;onLogout:()=>void}) {
   const [view,setView]=useState<"overview"|"grades"|"profile">("overview");
-  const gradeIcon=account.grades.length ? <Icon name="shield"/> : <Image src="/grades/poke-ball.webp" width={40} height={40} alt="Poké Ball — joueur sans grade payant"/>;
-  const grades=<>{account.grades.length ? account.grades.map(g=><div className="member-grade" key={g.grade}><h3>{g.grade}</h3><p>Actif jusqu’au {new Date(g.expires_at).toLocaleDateString('fr-FR',{timeZone:'UTC'})}</p></div>) : <><h3>Joueur</h3><p>Aucun grade payant actif.</p></>}</>;
+  const activeGrades=account.grades.filter(g=>Date.parse(g.expires_at)>Date.now()).sort((a,b)=>(gradePresentation[b.grade]?.priority||0)-(gradePresentation[a.grade]?.priority||0));
+  const presentation=gradePresentation[activeGrades[0]?.grade]||gradePresentation.aventurier;
+  const gradeIcon=<Image src={`/grades/${presentation.image}`} width={40} height={40} alt={`Poké Ball du grade ${presentation.name}`}/>;
+  const grades=<>{activeGrades.length ? activeGrades.map(g=><div className="member-grade" key={g.grade}><h3>{gradePresentation[g.grade]?.name||g.grade}</h3><p>Actif jusqu’au {new Date(g.expires_at).toLocaleDateString('fr-FR',{timeZone:'UTC'})}</p></div>) : <><h3>Aventurier</h3><p>Aucun grade payant actif.</p></>}</>;
   const profile=<MemberInformation account={account}/>;
   return <div className="member-inner">
     <div className="member-heading"><h1>Mon espace</h1><p>Retrouvez votre profil et vos avantages.</p></div>
