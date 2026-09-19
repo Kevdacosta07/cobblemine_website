@@ -650,6 +650,15 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .join-invitation-status{display:flex;align-items:center;gap:8px;font-size:11px;color:#abb3be;margin:20px 0 0}
 .join-invitation-status>span{width:5px;height:5px;border-radius:50%;background:#ffc16e}
 .join-connection-details{margin:0 0 26px}.join-connection-details>div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #e9ecef;font-size:13px}.join-connection-details dt{font-weight:600}.join-connection-details dd{margin:0;color:#75808c;text-align:right}
+.launcher-downloads{display:grid;gap:10px;margin:0 0 22px}
+.launcher-downloads>a{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 16px;border:1px solid #dce2e7;border-radius:9px;background:#f9fafb;color:#27313a;text-decoration:none;transition:background .2s,border-color .2s}
+.launcher-downloads>a:hover{background:#fff3e2;border-color:#e9ae64}
+.launcher-downloads>a:focus-visible{outline:2px solid #df6d09;outline-offset:3px}
+.launcher-downloads strong{display:block;font-size:14px}
+.launcher-downloads small{display:block;margin-top:4px;font-size:12px;color:#626e7a}
+.navbar-dialog>p.launcher-download-note{font-size:12px;line-height:1.65;margin-bottom:14px}
+.launcher-download-note a,.launcher-release-link{color:#a94708;text-decoration:underline;text-underline-offset:3px}
+.launcher-release-link{font-size:12px}
 @media(max-width:700px){.join-invitation{padding:42px 5.5%}.join-invitation-card{min-height:420px;border-radius:14px}.join-invitation-copy{padding:34px 24px}.join-invitation-image{object-position:65% center}.join-invitation-card::after{background:linear-gradient(90deg,#080f1ce8,#080f1c88)}.join-invitation-description{font-size:14px}.magma-button{padding:14px 19px}}
 @media(hover:none){.magma-liquid{transform:translateY(30%)}.magma-button{color:#fff}}
 @media(prefers-reduced-motion:reduce){.magma-button,.magma-liquid{transition:none}.magma-liquid i{animation:none}}

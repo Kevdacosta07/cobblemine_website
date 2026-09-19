@@ -3,6 +3,14 @@
 import Image from "next/image";
 import { useRef } from "react";
 
+const release = "https://github.com/Kevdacosta07/cobblemine_launcher/releases/download/v0.1.15";
+const downloads = [
+  {label: "Windows", detail: "64 bits · Installateur", file: "Cobblemine-Setup-0.1.15-x64.exe"},
+  {label: "Mac · Apple Silicon", detail: "Puce M1 ou plus récente · Version de test", file: "Cobblemine-0.1.15-mac-arm64.dmg"},
+  {label: "Mac · Intel", detail: "Processeur Intel · Version de test", file: "Cobblemine-0.1.15-mac-x64.dmg"},
+  {label: "Linux", detail: "64 bits · AppImage", file: "Cobblemine-0.1.15-linux-x86_64.AppImage"},
+];
+
 export default function JoinSection() {
   const dialog = useRef<HTMLDialogElement>(null);
   return <section className="join-invitation" id="rejoindre" aria-labelledby="join-title">
@@ -21,15 +29,15 @@ export default function JoinSection() {
     </div>
     <dialog ref={dialog} className="navbar-dialog join-instructions" aria-labelledby="join-dialog-title" onClick={event => { if (event.target === dialog.current) dialog.current.close(); }}>
       <button className="dialog-close" aria-label="Fermer" onClick={() => dialog.current?.close()}>✕</button>
-      <p className="eyebrow">BIENTÔT SUR COBBLEMINE</p>
-      <h2 id="join-dialog-title">Préparez votre arrivée.</h2>
-      <p>Le serveur est encore en préparation. Retrouvez ici les informations de connexion dès l’ouverture.</p>
-      <dl className="join-connection-details">
-        <div><dt>Adresse du serveur</dt><dd>Bientôt disponible</dd></div>
-        <div><dt>Version & modpack</dt><dd>À venir</dd></div>
-        <div><dt>Discord</dt><dd>Lien à venir</dd></div>
-      </dl>
-      <button className="events-button" onClick={() => dialog.current?.close()}>Compris <span aria-hidden="true">→</span></button>
+      <p className="eyebrow">LAUNCHER · VERSION 0.1.15</p>
+      <h2 id="join-dialog-title">À vous de jouer.</h2>
+      <p>Choisissez votre ordinateur, puis connectez-vous avec votre compte Cobblemine. Le serveur public est encore en préparation.</p>
+      <div className="launcher-downloads">
+        {downloads.map(download => <a key={download.file} href={`${release}/${download.file}`}><span><strong>{download.label}</strong><small>{download.detail}</small></span><span aria-hidden="true">↓</span></a>)}
+      </div>
+      <p className="launcher-download-note"><strong>Sur Mac :</strong> ces versions de test ne sont pas encore signées ni notariées par Apple. macOS peut bloquer leur ouverture. La version signée est en préparation.</p>
+      <p className="launcher-download-note"><strong>Sur Linux :</strong> autorisez l’exécution du fichier dans ses propriétés. L’AppImage nécessite FUSE 2. Une <a href={`${release}/Cobblemine-0.1.15-linux-x64.tar.gz`}>archive Linux</a> est aussi disponible.</p>
+      <a className="launcher-release-link" href="https://github.com/Kevdacosta07/cobblemine_launcher/releases/tag/v0.1.15" target="_blank" rel="noreferrer">Installation et détails de la version ↗</a>
     </dialog>
   </section>;
 }
