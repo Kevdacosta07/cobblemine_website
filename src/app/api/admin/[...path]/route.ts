@@ -1,6 +1,6 @@
 import {NextRequest} from 'next/server';
 import {api,checkOrigin,failed,json,readBody,session} from '@/lib/auth-server';
-const allowed=/^(me|grades|statistics|history|players(?:\/[0-9a-f-]{36}(?:\/actions)?)?)$/;
+const allowed=/^(me|server-health|grades|statistics|history|players(?:\/[0-9a-f-]{36}(?:\/actions)?)?)$/;
 async function proxy(request:NextRequest,context:{params:Promise<{path:string[]}>},write:boolean){
  try{
   const route=(await context.params).path.join('/');
