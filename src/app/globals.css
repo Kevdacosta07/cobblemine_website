@@ -341,7 +341,7 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 .grade-art img{width:145px;height:145px;object-fit:contain;transition:transform .25s ease;filter:drop-shadow(0 8px 8px #27313a14)}
 .grade-card:hover .grade-art img{transform:translateY(-5px)}
 .grade-card h3{font-size:24px;line-height:1.2;margin:20px 0 0;color:#27313a}
-.grade-legende{background:#fffbf2;border-color:#efdec0}
+.grade-maitre{background:#fffbf2;border-color:#efdec0}
 .shop-action{text-align:center;margin-top:34px}
 .shop-cta{display:inline-flex;align-items:center;justify-content:center;gap:28px;min-height:48px;padding:13px 23px;border-radius:7px;border:1px solid #27313a;background:#27313a;color:#fff;font:600 14px var(--font-body),sans-serif;cursor:pointer;transition:background .18s}
 .shop-action p{font-size:12px;color:#747b83;margin:18px 0 0}
@@ -681,3 +681,20 @@ h1,h2,h3,.section h2,.join h2{font-family:var(--font-heading),sans-serif;font-we
 @media(min-width:851px) and (max-width:1200px){.navbar-account span{display:none}.navbar-account{padding:0 10px}.site-navbar .navbar-links a,.site-navbar .navbar-links button{padding:0 8px}}
 @media(max-width:850px){.navbar-account span{display:none}.navbar-account{padding:0 10px}.site-navbar .navbar-links .mobile-account-link{display:flex}}
 @media(max-width:440px){.site-navbar .cart-button{display:none}.navbar-account{width:38px;min-width:38px;padding:0}.site-navbar .navbar-actions{gap:5px}}
+
+.navbar-account .navbar-skin{width:30px;height:30px;flex-shrink:0;object-fit:contain;image-rendering:pixelated;border-radius:3px}
+
+/* Keep shopping together, with a separate account access. */
+.site-navbar .navbar-actions{gap:14px}
+.navbar-commerce{display:flex;align-items:center;border:1px solid #efc9a6;border-radius:8px;background:#fff7ef;overflow:hidden;flex-shrink:0}
+.site-navbar .navbar-commerce .shop-button{border:0;border-radius:0;box-shadow:none;animation:none;transform:none;background:#ff921e;color:#281b10;padding:0 16px}
+.site-navbar .navbar-commerce .shop-button:hover{background:#ffa43e}
+.site-navbar .navbar-commerce .cart-button{border:0;border-left:1px solid #efc9a6;border-radius:0;background:transparent;color:#995015;padding:0 12px;gap:8px}
+.site-navbar .navbar-commerce .cart-button:hover{background:#ffead5}
+.navbar-commerce .cart-button>svg:last-child{display:none}
+.navbar-action-divider{height:26px;width:1px;background:#dfe3e6;flex-shrink:0}
+.site-navbar .navbar-account{border:0;border-radius:6px;padding:0 5px;min-width:34px;color:#57616b}
+.site-navbar .navbar-account:hover{background:#f3f5f6;color:#27313a}
+.navbar-commerce button:focus-visible{outline-offset:-4px}
+@media(max-width:1100px){.site-navbar .navbar-actions{gap:10px}.site-navbar .navbar-commerce .shop-button{padding:0 12px}}
+@media(max-width:440px){.site-navbar .navbar-actions{gap:7px}.site-navbar .navbar-logo{width:75px}.site-navbar .navbar-commerce .shop-button{padding:0 9px;font-size:15px}.site-navbar .navbar-commerce .cart-button{display:flex;padding:0 8px;gap:4px;font-size:15px}.navbar-commerce .cart-button>svg:first-child{width:17px;height:17px}.site-navbar .navbar-account{width:30px;min-width:30px;padding:0}.site-navbar .menu-toggle{padding:0 7px}.navbar-action-divider{height:24px}}

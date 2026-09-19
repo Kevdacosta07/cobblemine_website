@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 
 const grades = [
-  { name: "Dresseur", asset: "dresseur", price: "4,99", description: "Une première touche personnelle pour votre aventure.", benefits: ["Préfixe Dresseur dans le chat", "3 emplacements de maison /home", "2 styles de particules discrets", "Un kit de décoration de bienvenue", "Rôle Dresseur sur Discord", "Accès aux annonces réservées aux soutiens"] },
-  { name: "Ranger", asset: "ranger", price: "9,99", description: "Pour les explorateurs qui aiment se sentir chez eux partout.", benefits: ["Tous les avantages Dresseur", "Préfixe Ranger et rôle Discord assorti", "6 emplacements de maison /home", "5 styles de particules au choix", "Un kit de décoration nature", "3 couleurs de pseudo disponibles"] },
-  { name: "Champion", asset: "champion", price: "19,99", description: "Affichez vos couleurs et donnez du caractère à votre base.", benefits: ["Tous les avantages Ranger", "Préfixe Champion et rôle Discord assorti", "10 emplacements de maison /home", "10 styles de particules au choix", "Un kit de décoration arène", "Un badge Champion sur votre profil"] },
-  { name: "Maître", asset: "maitre", price: "29,99", description: "Une collection de personnalisations pour les passionnés.", benefits: ["Tous les avantages Champion", "Préfixe Maître et rôle Discord assorti", "15 emplacements de maison /home", "15 styles de particules au choix", "Un kit de décoration prestige", "Une animation de connexion personnalisable"] },
-  { name: "Légende", asset: "legende", price: "49,99", description: "Le grade signature pour les plus grands soutiens du serveur.", benefits: ["Tous les avantages Maître", "Préfixe Légende et rôle Discord assorti", "20 emplacements de maison /home", "Toute la collection de particules", "Un kit de décoration légendaire", "Un badge doré et une animation de connexion exclusive"] },
+  { name: "Dresseur", asset: "dresseur", image: "super-ball.png", price: "4,99", description: "Une première touche personnelle pour votre aventure.", benefits: ["Préfixe Dresseur dans le chat", "3 emplacements de maison /home", "2 styles de particules discrets", "Un kit de décoration de bienvenue", "Rôle Dresseur sur Discord", "Accès aux annonces réservées aux soutiens"] },
+  { name: "Ranger", asset: "ranger", image: "hyper-ball.png", price: "9,99", description: "Pour les explorateurs qui aiment se sentir chez eux partout.", benefits: ["Tous les avantages Dresseur", "Préfixe Ranger et rôle Discord assorti", "6 emplacements de maison /home", "5 styles de particules au choix", "Un kit de décoration nature", "3 couleurs de pseudo disponibles"] },
+  { name: "Champion", asset: "champion", image: "honor-ball.png", price: "19,99", description: "Affichez vos couleurs et donnez du caractère à votre base.", benefits: ["Tous les avantages Ranger", "Préfixe Champion et rôle Discord assorti", "10 emplacements de maison /home", "10 styles de particules au choix", "Un kit de décoration arène", "Un badge Champion sur votre profil"] },
+  { name: "Légende", asset: "legende", image: "luxe-ball.png", price: "29,99", description: "Une collection de personnalisations pour les passionnés.", benefits: ["Tous les avantages Champion", "Préfixe Légende et rôle Discord assorti", "15 emplacements de maison /home", "15 styles de particules au choix", "Un kit de décoration prestige", "Une animation de connexion personnalisable"] },
+  { name: "Maître", asset: "maitre", image: "maitre.webp", price: "49,99", description: "Le grade signature pour les plus grands soutiens du serveur.", benefits: ["Tous les avantages Légende", "Préfixe Maître et rôle Discord assorti", "20 emplacements de maison /home", "Toute la collection de particules", "Un kit de décoration légendaire", "Un badge doré et une animation de connexion exclusive"] },
 ];
 
 export default function ShopSection() {
@@ -30,7 +30,7 @@ export default function ShopSection() {
       <ul className="grade-grid">
         {grades.map((item, index) => <li className={`grade-card grade-${item.asset}${selected === index ? " is-selected" : ""}`} key={item.asset}>
           <button className="grade-select" aria-pressed={selected === index} aria-controls="grade-details" onClick={() => setSelected(index)}>
-            <span className="grade-art"><Image src={`/grades/${item.asset}.webp`} alt="" width={320} height={320} sizes="(max-width: 600px) 120px, 160px" /></span>
+            <span className="grade-art"><Image src={`/grades/${item.image}`} alt="" width={320} height={320} sizes="(max-width: 600px) 120px, 160px" /></span>
             <span className="grade-name">{item.name}</span>
             <span className="grade-card-price">{item.price} € / mois</span>
           </button>
